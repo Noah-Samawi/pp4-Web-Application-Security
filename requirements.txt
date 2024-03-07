@@ -7,4 +7,5 @@ gunicorn==21.2.0
 psycopg2==2.9.9
 pytz==2024.1
 sqlparse==0.4.4
-django_summernote==x.x.x
+django_summernote==0.8.11.6
+
