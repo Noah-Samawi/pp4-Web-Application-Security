@@ -7,9 +7,6 @@ from .validators import textfield_not_empty
 from django.utils.text import slugify
 
 
-
-
-
 STATUS = ((0, "Save for later"), (1, "Publish Now"))
 
 

@@ -1,31 +1,25 @@
-from django.shortcuts import render, 
-
 """Views"""
 
-# from django.shortcuts import render, get_object_or_404, reverse
-# from django.contrib import messages
-# from django.contrib.messages.views import SuccessMessageMixin
-# from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-# from django.urls import reverse_lazy
-# from django.http import HttpResponseRedirect
-# from django.views import generic, View
-# from .models import SecurityFeature, MealPlanItem, Comment
-# from .forms import CommentForm, RecipeForm, MealPlanForm
+from django.shortcuts import render
+from django.views import generic
+from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .models import SecurityFeature, Comment
 
+class WorkSiflyList(generic.ListView):
+    model = SecurityFeature
+    template_name = "index.html"
 
-# class Home(generic.TemplateView):
-#     """This view is used to display the home page"""
-#     template_name = "index.html"
+class SecurityFeatureList(generic.ListView):
+    model = SecurityFeature
+    queryset = SecurityFeature.objects.filter(status=1).order_by('-created_on')
+    template_name = 'browse_recipes.html'
+    paginate_by = 8
 
-
-# class RecipeList(generic.ListView):
-#     """
-#     This view is used to display all recipes in the browse recipes page
-#     """
-#     model = Recipe
-#     queryset = Recipe.objects.filter(status=1).order_by('-created_on')
-#     template_name = 'browse_recipes.html'
-#     paginate_by = 8
+# Other classes were commented out. If needed, you can uncomment and modify them as necessary.
 
 
 # class RecipeDetail(View):
