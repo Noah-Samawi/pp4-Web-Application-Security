@@ -1,8 +1,10 @@
-from .validators import textfield_not_empty
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from autoslug import AutoSlugField
+from django.urls import reverse
+from .validators import textfield_not_empty
+
 
 
 
@@ -39,7 +41,7 @@ class SecurityFeature(models.Model):
         return f"{self.title}"
 
 
-class TechSecurItem(models.Model):
+class TechSecurityItem(models.Model):
     """Model for Tech Secur Item"""
     DAY_CHOICES = [
         (0, "Monday"),
@@ -52,17 +54,17 @@ class TechSecurItem(models.Model):
     ]
 
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="tech_securs")
+        User, on_delete=models.CASCADE, related_name="tech_security")
     security_feature = models.ForeignKey(
-        SecurityFeature, on_delete=models.CASCADE, related_name="tech_secur_items")
+        SecurityFeature, on_delete=models.CASCADE, related_name="tech_security_items")
     day = models.IntegerField(choices=DAY_CHOICES, default=0)
 
     class Meta:
-        """To display the Tech Secur Items by day in ascending order"""
+        """To display the Tech Security Items by day in ascending order"""
         ordering = ['day']
 
     def __str__(self):
-        return f"Meal Plan for {self.day} by {self.user}"
+        return f"Tech Security for {self.day} by {self.user}"
 
 
 class Comment(models.Model):
