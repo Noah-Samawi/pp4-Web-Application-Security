@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-aaw@ivz20fujpupz5-9170$mh3b=6oa(e^j&atpce2$c)mckw*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pp4-web-application-security-aaef0fe6b0f0.herokuapp.com', '8000-noahsamawi-pp4webapplic-e4op6ejxlqw.ws-eu108.gitpod.io', 'localhost']
+ALLOWED_HOSTS = ['pp4-web-application-security-aaef0fe6b0f0.herokuapp.com', '8000-noahsamawi-pp4webapplic-ep08heoaona.ws-eu108.gitpod.io', 'localhost']
 
 
 # Application definition

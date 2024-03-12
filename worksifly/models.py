@@ -15,7 +15,7 @@ class SecurityFeature(models.Model):
     description = models.TextField()
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="security_features")
+        User, on_delete=models.CASCADE, related_name="blog_security_features")
     created_on = models.DateTimeField(auto_now=True)
     updated_on = models.DateTimeField(auto_now=True)
     description = models.TextField()
@@ -25,7 +25,7 @@ class SecurityFeature(models.Model):
     bookmarks = models.ManyToManyField(
         User, related_name='bookmarks', blank=True)
     likes = models.ManyToManyField(
-        User, related_name='blogpost_like', blank=True)    
+        User, related_name='blog_security_features_like', blank=True)    
 
     class Meta:
         """To display the security features by created_on in descending order"""
