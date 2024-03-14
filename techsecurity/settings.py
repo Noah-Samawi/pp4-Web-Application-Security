@@ -32,23 +32,32 @@ SECRET_KEY = 'django-insecure-aaw@ivz20fujpupz5-9170$mh3b=6oa(e^j&atpce2$c)mckw*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pp4-web-application-security-aaef0fe6b0f0.herokuapp.com', '8000-noahsamawi-pp4webapplic-ep08heoaona.ws-eu108.gitpod.io', 'localhost']
+ALLOWED_HOSTS = ['pp4-web-application-security-aaef0fe6b0f0.herokuapp.com',  '8000-noahsamawi-pp4webapplic-ep08heoaona.ws-eu110.gitpod.io', 'localhost']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-   'django.contrib.admin',
-   'django.contrib.auth',
-   'django.contrib.contenttypes',
-   'django.contrib.sessions',
-   'django.contrib.messages',
-   'cloudinary_storage',
-   'django.contrib.staticfiles',
-   'cloudinary',
-   'django_summernote',
-   'worksifly',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.sites',
+    'cloudinary_storage',
+    'django.contrib.staticfiles',
+    'cloudinary',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'django_summernote',
+    'worksifly',
 ]
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -58,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'techsecurity.urls'
@@ -92,8 +102,9 @@ WSGI_APPLICATION = 'techsecurity.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get("DATABASE_URL")),
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
+DATABASE_URL='postgres://gazhqxww:zF090-TY-hKlkdoTCJdFq1xbxs3gE2Mz@tai.db.elephantsql.com/gazhqxww'
 
 
 

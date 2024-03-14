@@ -6,7 +6,6 @@ from django.urls import reverse
 from .validators import textfield_not_empty
 from django.utils.text import slugify
 
-
 STATUS = ((0, "Save for later"), (1, "Publish Now"))
 
 
@@ -18,14 +17,13 @@ class SecurityFeature(models.Model):
         User, on_delete=models.CASCADE, related_name="blog_security_features")
     created_on = models.DateTimeField(auto_now=True)
     updated_on = models.DateTimeField(auto_now=True)
-    description = models.TextField()
     method = models.TextField(validators=[textfield_not_empty])
     image = CloudinaryField('image', default='placeholder')
     status = models.IntegerField(choices=STATUS, default=1)
     bookmarks = models.ManyToManyField(
         User, related_name='bookmarks', blank=True)
     likes = models.ManyToManyField(
-        User, related_name='blog_security_features_like', blank=True)    
+        User, related_name='blog_security_features_like', blank=True)
 
     class Meta:
         """To display the security features by created_on in descending order"""
