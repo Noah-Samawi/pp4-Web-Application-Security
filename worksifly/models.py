@@ -38,7 +38,7 @@ class SecurityFeature(models.Model):
 
 
 class TechSecurityItem(models.Model):
-    """Model for Tech Secur Item"""
+    """Model for tech secur item"""
     DAY_CHOICES = [
         (0, "Monday"),
         (1, "Tuesday"),

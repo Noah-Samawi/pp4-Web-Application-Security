@@ -1,169 +1,43 @@
 /* Google Fonts */
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500&family=Open+Sans:wght@300;500&family=Playfair+Display:wght@600&display=swap');
 
 /* Global Styles */
-
-/* blog post styling */
 body {
-    background-color: #F9FAFC;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    background-color: #ffff;
 }
 
-.brand {
-    font-family: Lato, sans-serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #4A4A4F;
+.content {
+    min-height: calc(100vh - 90px);
 }
 
-.red-o {
-    color: #E84610;
-}
-
-.thin {
+.pink-text {
+    color: #886363;
     font-weight: 300;
 }
 
-.light-bg {
-    background-color: #fff;
+.page-title {
+    padding-top: 5px;
+    color: #000000;
+    font-weight: 300;
+    text-align: center;
 }
-
-.dark-bg {
-    background-color: #445261;
-}
-
-.main-bg {
-    background-color: #F9FAFC;
-}
-
-.card {
-    border: none;
-    background-color: transparent;
-}
-
-.image-container {
-    position: relative;
-}
-
-.image-flash {
-    position: absolute;
-    bottom: 5%;
-    min-width: 30%;
-    left: -2px;
-    background-color: #23BBBB;
-}
-
-.author {
-    color: white;
-    margin: 4px;
-    text-transform: uppercase;
-}
-
-.masthead {
-    margin-top: 10px;
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-    height: 33vh;
-    width: 100%;
-}
-
-.masthead-text {
-    background-color: #445261;
-    color: white;
-    position: relative;
-}
-
-.masthead-image {
-    position: relative;
-    overflow: hidden;
-}
-
-.masthead-image:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 90%;
-    height: 100%;
-    width: 150%;
-    background: #445261;
-    -webkit-transform: skew(15deg);
-    -moz-transform: skew(15deg);
-    transform: skew(15deg);
-    z-index: 100;
-}
-
-.post-link {
-    text-decoration: none;
-    color: #445261;
-}
-
-.post-link:hover,
-.page-link {
-    color: #E84610;
-}
-
-.post-title {
-    margin-top: 20%;
-    margin-left: 5%;
-}
-
-.post-subtitle {
-    margin-left: 5%;
-    color: lightgray;
-}
-
-.btn-signup {
-    background-color: #23BBBB;
-    color: #fff;
-}
-
-.btn-signup:hover,
-.btn-signup:active {
-    background-color: #fff;
-    color: #23BBBB;
-}
-
-.link {
-    color: #23BBBB;
-    text-decoration: none;
-}
-
-.link:hover,
-.link:active {
-    color: #445261;
-    text-decoration: underline;
-}
-
-.btn-like {
-    color: #E84610;
-    border: none;
-    background: transparent;
-}
-
-.btn-like:hover,
-.btn-like:active {
-    color: #E84610;
-    background: transparent;
-    border: none;
-}
-
 
 /* Nav */
-
 .navbar {
     padding: 1rem 1rem;
 }
 
 .navbar ul a {
-    color: #442E10;
+    color: #6a5acd;
     font-weight: bold;
     font-size: 14px;
     text-transform: uppercase;
 }
 
 .navbar a:hover {
-    color: #886363;
+    color: #ff4500;
 }
 
 .logo-image {
@@ -175,20 +49,19 @@ body {
 }
 
 /* Home Page */
-
 .hero-text-outer {
-    background-color: #F4DDD8;
+    background-color: #ffffff;
     min-height: 200px;
 }
 
 .hero-text {
     font-family: 'Playfair Display', serif;
     font-size: 50px;
-    color: #442E10;
+    color: #442e10;
 }
 
 .home-break {
-    border-top: 1px solid #D8B646;
+    border-top: 1px solid #d8b646;
     margin: auto !important;
 }
 
@@ -210,10 +83,10 @@ body {
     font-size: 17px;
 }
 
-/* SecurityFeature Cards */
-
-.securityfeature-card:hover, .mealplan-card:hover {
-    box-shadow: 0px 0px 4px #D8B646 !important;
+/* Security Features Cards */
+.securityfeature-card:hover,
+.techsecurity-card:hover {
+    box-shadow: 0px 0px 4px #d8b646 !important;
 }
 
 .card-img-top {
@@ -228,21 +101,104 @@ body {
     color: #886363;
 }
 
-.-detail-title {
+.securityfeature-detail-title {
     font-size: 20px;
 }
 
-.securityfeature_detail-title:first-letter{
-    text-transform: capitalize
+.securityfeature-detail-title:first-letter {
+    text-transform: capitalize;
 }
 
 .draft {
     color: red;
 }
 
-/* All auth templates */
+/* Security Features Detail Page */
+.securityfeature-title:first-letter {
+    text-transform: capitalize;
+}
 
-.signup, .login {
+.securityfeature-detail-card {
+    border: 0.5px solid #d8b646;
+}
+
+.securityfeature-detail-img {
+    max-height: 300px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.securityfeature-detail-header {
+    border: none;
+    background-color: rgb(252, 247, 242);
+    color: #886363;
+}
+
+.action-buttons-outer {
+    position: absolute;
+    bottom: 15px;
+}
+
+.action-btn {
+    width: 40px;
+}
+
+.comment-action-btn a {
+    padding-left: 5px;
+    color: #128496;
+}
+
+/* Add Security Feature */
+.add-securityfeature input,
+.add-securityfeature textarea,
+.add-securityfeature select {
+    border: 1px solid #d8b646;
+}
+
+.add-securityfeature input[type=file] {
+    border: none !important;
+}
+
+.add-securityfeature label {
+    color: #886363;
+    font-weight: bold;
+}
+
+.clearablefileinput {
+    color: #886363;
+    border: none;
+}
+
+.add-securityfeature #div_id_image a {
+    color: black !important;
+}
+
+/* Tech Security Page */
+.techsecurity-card .card-img-top {
+    border-bottom: 1px solid #d8b646;
+}
+
+.mp-icon {
+    text-align: center;
+    color: #f4ddd8;
+    padding-top: 60px;
+}
+
+.techsecurity-card-header {
+    background-color: #f4ddd8;
+    border-bottom: 1px solid #d8b646;
+}
+
+.techsecurity-title {
+    text-align: center;
+    color: #442e10;
+    font-weight: 300;
+    font-size: 30px;
+}
+
+/* All Auth Templates */
+.signup,
+.login {
     text-align: center;
     padding: 20px 0;
     border-radius: 2%;
@@ -272,6 +228,31 @@ body {
     display: inline;
 }
 
+/* Footer */
+
+.footer-container {
+    border-top: 1px #D8B646 solid !important;
+}
+
+.social-networks {
+    text-align: center;
+    padding: 0;
+    margin: 30px 0;
+}
+
+.social-networks li {
+    display: inline;
+}
+
+.social-networks i {
+    font-size: 160%;
+    padding: 0 30px;
+    color: #4b5054;
+}
+
+.social-networks i:hover {
+    color: #142a2b;
+}
 
 /* Media Queries */
 
@@ -311,4 +292,3 @@ body {
         font-size: .75rem;
     }
 }
-

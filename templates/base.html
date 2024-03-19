@@ -17,15 +17,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/djebesftb/image/upload/v1710680537/favicon_eddd6o.ico">
 
     <!-- Bootsrap CDN-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     
     <!-- CSS -->
-    </script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
@@ -55,24 +50,25 @@
                                 <a class="nav-link" href="{% url 'browse_securityfeatures' %}">Browse Security Features</a>
                             </li>
                             {% if user.is_authenticated %}
-                            <li class="nav-item">
-                                <a href="{% url 'add_securityfeature' %}">Add Security Feature</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'my_securityfeatures' %}">My Security Features</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'my_bookmarks' %}">My Bookmarks</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <span><i class="fas fa-user profile-icon"></i>{{ user.username }}</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{% url 'my_securityfeatures' %}">My Security Features</a>
+                                    <a class="dropdown-item" href="{% url 'my_bookmarks' %}">My Bookmarks</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+                                </div>
                             </li>
                             {% else %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'account_signup' %}">Sign up</a>
-                            </li>
-                            <li class="nav-item">
+                                {% if user.email %}
                                 <a class="nav-link" href="{% url 'account_login' %}">Log in</a>
+                                {% else %}
+                                <a class="nav-link" href="{% url 'account_signup' %}">Sign up</a>
+                                {% endif %}
                             </li>
                             {% endif %}
                         </ul>

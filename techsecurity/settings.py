@@ -13,10 +13,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+from django.contrib.messages import constants as messages
 if os.path.isfile('env.py'):
     import env
 
-from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,13 +27,12 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-aaw@ivz20fujpupz5-9170$mh3b=6oa(e^j&atpce2$c)mckw*'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['pp4-web-application-security-aaef0fe6b0f0.herokuapp.com',  '8000-noahsamawi-pp4webapplic-ep08heoaona.ws-eu110.gitpod.io', 'localhost']
-
 
 # Application definition
 
@@ -50,14 +49,33 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'django_extensions',
     'django_summernote',
+    'crispy_forms',
     'worksifly',
 ]
+SUMMERNOTE_CONFIG = {
+    'width': '100%',
+    'height': '250',
+}
 
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+# Below from Code Institute's 
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -104,8 +122,6 @@ WSGI_APPLICATION = 'techsecurity.wsgi.application'
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
-DATABASE_URL='postgres://gazhqxww:zF090-TY-hKlkdoTCJdFq1xbxs3gE2Mz@tai.db.elephantsql.com/gazhqxww'
-
 
 
 # Password validation
@@ -144,16 +160,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'admin@tech.com'  
+EMAIL_PORT = 8000  # Replace with your SMTP server port
+EMAIL_USE_TLS = True 
+EMAIL_HOST_USER = 'admin'  # Replace with your SMTP username
+EMAIL_HOST_PASSWORD = 'IT#22#apfel'  # Replace with your SMTP password
