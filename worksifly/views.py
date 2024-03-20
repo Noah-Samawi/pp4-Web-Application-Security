@@ -25,7 +25,6 @@ class SecurityFeatureList(generic.ListView):
     template_name = "browse_securityfeatures.html"
     paginate_by = 8
 
-
 class SecurityFeatureDetail(View):
     """
     This view is used to display the full security feature details including comments.
@@ -55,11 +54,11 @@ class SecurityFeatureDetail(View):
             },
         )
 
-        def post(self, request, slug):
-            """
-            This method is called when a POST request is made to the view
-            via the comment form or the tech security form.
-            """
+    def post(self, request, slug):
+        """
+        This method is called when a POST request is made to the view
+        via the comment form or the tech security form.
+        """
         queryset = SecurityFeature.objects.filter(status=1)
         securityfeature = get_object_or_404(queryset, slug=slug)
         comments = securityfeature.comments.order_by('created_on')
@@ -68,6 +67,7 @@ class SecurityFeatureDetail(View):
             bookmarked = True
 
         comment_form = CommentForm(data=request.POST)
+        techsecurity_form = TechSecurityForm(data=request.POST)
 
         if comment_form.is_valid():
             comment_form.instance.email = request.user.email
@@ -77,19 +77,14 @@ class SecurityFeatureDetail(View):
             comment.save()
             messages.success(self.request, 'Comment successfully added')
         else:
-            comment_form = CommentForm()
+            messages.error(self.request, 'Comment form is not valid')
 
-        techsecurity_form = TechSecurityForm(data=request.POST)
-
-        if sechsecurity_form.is_valid():
-            # get existing mpi record for user / day
+        if techsecurity_form.is_valid():
             queryset = TechSecurityItem.objects.filter(
                 user=request.user, day=request.POST['day'])
             techsecurity_item = queryset.first()
 
-            # if a TechSecurity item already exists for that day
             if techsecurity_item:
-                # over write existing tech security item
                 techsecurity_item.securityfeature = securityfeature
                 messages.success(self.request, 'TechSecurity successfully updated')
             else:
@@ -99,9 +94,8 @@ class SecurityFeatureDetail(View):
                 messages.success(self.request, 'SecurityFeature added to techsecurity')
 
             techsecurity_item.save()
-
         else:
-            techsecurity_form = TechSecurityForm()
+            messages.error(self.request, 'TechSecurity form is not valid')
 
         return render(
             request,
@@ -109,13 +103,11 @@ class SecurityFeatureDetail(View):
             {
                 "securityfeature": securityfeature,
                 "comments": comments,
-                "comment_form": CommentForm(),
-                "techsecurity_form": TechSecurityForm(),
+                "comment_form": comment_form,
+                "techsecurity_form": techsecurity_form,
                 "bookmarked": bookmarked
             },
         )
-
-
 class AddSecurityFeature(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     """This view is used to allow logged in users to create a security feature"""
     form_class = SecurityFeatureForm

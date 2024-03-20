@@ -2,26 +2,28 @@
 {% load cloudinary %}
 
 <!DOCTYPE html>
-<html class="h-100">
+<html lang="en">
 
 <head>
-    <title>{% block title %}Web Application Security{% endblock %}</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Making application security stress-free for your everyday needs.">
-    <meta name="keywords" content="Digital Security Hub, Next-Gen Security Solutions, Network Protection Center, Secure Tomorrow's Networks">
-    <meta name="author" content="Software Guys">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/djebesftb/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1710680516/apple-touch-icon_kgfiax.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/djebesftb/image/upload/v1710680537/favicon_eddd6o.ico">
 
     <!-- Bootsrap CDN-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+    </script>
     
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>{% block title %}The Optimal Solutions{% endblock %}</title>
 </head>
 
 <body>
@@ -29,81 +31,50 @@
         <!-- Header starts -->
         <header>
             <!-- Navigation -->
-            <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <a class="navbar-brand" href="{% url 'home' %}">
-                        <img class="logo-image"
-                            src="https://res.cloudinary.com/djebesftb/image/upload/v1710681942/logo_wt6zwf.png"
-                            alt="headerlogo">
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img class="logo-image" src="https://res.cloudinary.com/djebesftb/image/upload/v1710681942/logo_wt6zwf.png" alt="headerlogo">
+        </a>
+        <button class="navbar-light navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'browse_securityfeatures' %}">Browse Security Features</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                        <span><i class="fas fa-user profile-icon"></i>{{ user.username }}</span>
                     </a>
-                    <button class="navbar-light navbar-toggler ml-auto" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                        <ul class="navbar-nav mb-2 mb-lg-0">
-                            <li class="nav-item ">
-                                <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'browse_securityfeatures' %}">Browse Security Features</a>
-                            </li>
-                            {% if user.is_authenticated %}
-                            <li class="nav-item dropdown">
-                                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <span><i class="fas fa-user profile-icon"></i>{{ user.username }}</span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{% url 'my_securityfeatures' %}">My Security Features</a>
-                                    <a class="dropdown-item" href="{% url 'my_bookmarks' %}">My Bookmarks</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
-                                </div>
-                            </li>
-                            {% else %}
-                            <li class="nav-item">
-                                {% if user.email %}
-                                <a class="nav-link" href="{% url 'account_login' %}">Log in</a>
-                                {% else %}
-                                <a class="nav-link" href="{% url 'account_signup' %}">Sign up</a>
-                                {% endif %}
-                            </li>
-                            {% endif %}
-                        </ul>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'my_securityfeatures' %}">My Security Features</a>
+                        <a class="dropdown-item" href="{% url 'my_bookmarks' %}">My Bookmarks</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
                     </div>
-                    <div class="d-none d-lg-block">
-                        <ul class="navbar-nav mb-2 mb-lg-0">
-                            {% if user.is_authenticated %}
-                            <li class="nav-item dropdown">
-                                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <span><i class="fas fa-user profile-icon"></i>{{ user.username }}</span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{% url 'my_securityfeatures' %}">My Security Features</a>
-                                    <a class="dropdown-item" href="{% url 'my_bookmarks' %}">My Bookmarks</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
-                                </div>
-                            </li>
-                            {% else %}
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-toggle="dropdown" aria-expanded="false">
-                                    <span>My Account</span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{% url 'account_signup' %}">Sign up</a>
-                                    <a class="dropdown-item" href="{% url 'account_login' %}">Log in</a>
-                                </div>
-                            </li>
-                            {% endif %}
-                        </ul>
+                </li>
+                {% else %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                        <span>My Account</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'account_signup' %}">Sign up</a>
+                        <a class="dropdown-item" href="{% url 'account_login' %}">Log in</a>
                     </div>
-                </div>
-            </nav>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
         </header>
         <!-- Header ends -->
      <!-- Below from Code Institute's I Think Therefore I Blog project -->

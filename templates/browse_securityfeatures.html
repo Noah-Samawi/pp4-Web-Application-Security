@@ -1,42 +1,40 @@
 {% extends "base.html" %}
-
-{% block title %}The Easy Eater | All SecurityFeatures{% endblock %}
-
+{% block title %}The Optimal Solutions | All SecurityFeatures{% endblock %}
 {% block content %}
-  <div class="container">
+
+<div class="container">
     <div class="row">
-      <div class="col-12">
-        <h1 class="page-title">SecurityFeatures</h1>
-      </div>
+        <div class="col-12">
+            <h1 class="page-title">SecurityFeatures</h1>
+        </div>
     </div>
     <hr class="home-break">
     <br>
-
     <!-- SecurityFeature Cards -->
     <div class="row card-deck">
-      {% for securityfeature in securityfeature_list %}
+        {% for securityfeature in securityfeature_list  %}
         <div class="col-sm-6 col-md-4 col-lg-3 px-1 d-flex align-items-stretch">
-          <div class="card card-detail securityfeature-card mb-3 shadow-sm mx-auto mx-sm-2">
-            {% if "placeholder" in securityfeature.image.url %}
-              <img src="https://res.cloudinary.com/djebesftb/image/upload/v1709558900/j8nrs3eenaxqnuflqj5v.webp"
-                   class="card-img-top" alt="placeholder image">
-            {% else %}
-              <img src="{{ securityfeature.image.url }}" alt="securityfeature image" class="card-img-top">
-            {% endif %}
-            <div class="card-body pb-1">
-              <h2 class="card-title securityfeature-detail-title text-truncate">{{ securityfeature.title }}</h2>
-              <p class="card-text">
-                <span><i class="far fa-clock pr-2"></i></span>
-                <span>Cook Time: {{ securityfeature.cook_time }}</span>
-              </p>
-              <a href="{% url 'securityfeature_detail' securityfeature.slug %}" class="stretched-link"
-                 aria-label="securityfeature-detail"></a>
+            <div class="card card-detail securityfeature-card mb-3 shadow-sm mx-auto mx-sm-2">
+                {% if "placeholder" in securityfeature.image.url %}
+                <img src="https://res.cloudinary.com/aliokeeffe/image/upload/v1656016833/placeholder_image_prqssg.jpg"
+                    class="card-img-top" alt="placeholder image">
+                {% else %}
+                <img src=" {{ securityfeature.image.url }}" alt="securityfeature image" class="card-img-top">
+                {% endif %}
+                <div class="card-body pb-1">
+                    <h2 class="card-title securityfeature-detail-title text-truncate">{{ securityfeature.title }}</h2>
+                    <p class="card-text">
+                        <span><i class="far fa-clock pr-2"></i></span>
+                        <span>Cook Time: {{ securityfeature.cook_time }}</span>
+                    </p>
+                    <a href="{% url 'securityfeature_detail' securityfeature.slug %}" class="stretched-link"
+                        aria-label="securityfeature-detail"></a>
+                </div>
             </div>
-          </div>
         </div>
-      {% endfor %}
+        {% endfor %}
     </div>
-  </div>
+</div>
+{% include "paginator.html" %}
 
-  {% include "paginator.html" %}
 {% endblock %}
