@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, connections
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from autoslug import AutoSlugField
@@ -13,9 +13,10 @@ class SecurityFeature(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     slug = models.SlugField(max_length=200, unique=True)
+    content = models.TextField()
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="blog_security_features")
-    created_on = models.DateTimeField(auto_now=True)
+    created_on = models.DateTimeField(auto_now_add=True)  # Changed to auto_now_add
     updated_on = models.DateTimeField(auto_now=True)
     method = models.TextField(validators=[textfield_not_empty])
     image = CloudinaryField('image', default='placeholder')
@@ -24,13 +25,14 @@ class SecurityFeature(models.Model):
         User, related_name='bookmarks', blank=True)
     likes = models.ManyToManyField(
         User, related_name='blog_security_features_like', blank=True)
+    
+    # Added default value for the excerpt field
+    excerpt = models.CharField(max_length=255, default='')  
 
     class Meta:
-        """To display the security features by created_on in descending order"""
         ordering = ['-created_on']
 
     def get_absolute_url(self):
-        """Get URL after the user adds/edits a security feature"""
         return reverse('securityfeature_detail', kwargs={'slug': self.slug})
 
     def __str__(self):

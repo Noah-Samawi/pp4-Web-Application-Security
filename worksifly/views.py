@@ -35,6 +35,7 @@ class SecurityFeatureDetail(View):
         """
         Retrives the security feature and related comments from the database
         """
+        bookmarked = False
         queryset = SecurityFeature.objects.filter(status=1)
         securityfeature = get_object_or_404(queryset, slug=slug)
         comments = securityfeature.comments.filter(approved=True).order_by("-created_on")
