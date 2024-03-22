@@ -1,1 +1,1 @@
-web: gunicorn pp4-web-application-security.wsgi
+web: gunicorn techsecurity.wsgi
