@@ -1,1 +1,1 @@
-web: /workspace/.pip-modules/bin/gunicorn techsecurity.wsgi --log-file -
+web: gunicorn techsecurity.wsgi
