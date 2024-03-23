@@ -1,85 +1,193 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block title %}Web Application Security | {{ securityfeature.title }}{% endblock %}
+{% block content %}
+{% load crispy_forms_tags %}
 
-<div class="masthead">
-    <div class="container">
-        <div class="row g-0">
-            <div class="col-md-6 masthead-text">
-                <!-- SecurityFeature title goes in these h1 tags -->
-                <h1 class="-title">{{ securityfeature.title }}</h1>
-                <!-- SecurityFeature author goes before the | the securityfeature's created date goes after -->
-                <p class="securityfeature-subtitle">{{ securityfeature.author }} | {{ securityfeature.created_on }}</p>
+<div class="container p-0">
+    <div class="container pt-3">
+        <div class="card mb-3 securityfeature-detail-card">
+            <div class="row no-gutters">
+                <div class="col-12 col-md-4">
+                    {% if "placeholder" in securityfeature.image.url %}
+                    <img src="https://res.cloudinary.com/djebesftb/image/upload/v1711031059/Web-Application-Security_1_wbxthr.webp"
+                        class="securityfeature-detail-img" alt="placeholder image">
+                    {% else %}
+                    <img src=" {{ securityfeature.image.url }}" alt="securityfeature image" class="securityfeature-detail-img">
+                    {% endif %}
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="card-body securityfeature-detail-outer py-2">
+                        <div>
+                            <h1 class="card-title page-title securityfeature-title text-left">{{ securityfeature.title }}</h1>
+                        </div>
+                        <p class="card-text">Author: {{ securityfeature.author }}</p>
+                        <div class="mb-5">
+                            <p>
+                                <span><i class="far fa-clock pr-2"> </i></span>
+                                <span>Tech Security: {{ securityfeature.tech_security }}</span>
+                            </p>
+                        </div>
+                        <!-- securityfeature action buttons -->
+                        <div class="action-buttons-outer d-block">
+                            {% if user.is_authenticated %}
+                            <button type="button" class="btn btn btn-outline-dark mp-button rounded-pill mr-2"
+                                data-toggle="modal" data-target="#techsecurityModal">
+                                <span><i class="fas fa-calendar-plus pr-1"></i></span>
+                                Add to Tech Security
+                            </button>
+                            <!--Tech Security Modal -->
+                            <div class="modal fade" id="techsecurityModal" tabindex="-1"
+                                aria-labelledby="techsecurityModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="techsecurityModalLabel">Select Day</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form method="post" class="add-securityfeature">
+                                            <div class="modal-body">
+                                                {{ techsecurity_form | crispy }}
+                                                {% csrf_token %}
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-outline-dark btn-sm">
+                                                    <span><i class="fas fa-calendar-plus pr-1"></i></span>
+                                                    Add to Tech Security
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <!--End of Tech Security Modal -->
+                            {% if user.is_authenticated %}
+                            <form class="d-inline" action="{% url 'bookmark_securityfeature' securityfeature.slug %}" method="POST">
+                                {% csrf_token %}
+                                {% if bookmarked  %}
+                                <button class="action-btn btn btn-info" type="submit" name="bookmark_id"
+                                    value="{{securityfeature.slug}}" aria-label="bookmark-outline">
+                                    <i class="fas fa-bookmark"></i></button>
+                                {% else %}
+                                <button class="action-btn btn btn-info" type="submit" name="bookmark_id"
+                                    value="{{securityfeature.slug}}" aria-label="bookmark-solid"><i
+                                        class="far fa-bookmark"></i></button>
+                                {% endif %}
+                            </form>
+                            {% endif %}
+                            {% if user.is_authenticated and securityfeature.author == user %}
+                            <span>
+                                <a class="action-btn btn btn-info" href="{% url 'update_securityfeature' securityfeature.slug %}"
+                                    aria-label="edit-securityfeature">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </span>
+                            <span>
+                                <a class="action-btn btn btn-info" href="{% url 'delete_securityfeature' securityfeature.slug %}"
+                                    aria-label="delete-securityfeature">
+                                    <i class="fas fa-times"></i>
+                                </a>
+                            </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="d-none d-md-block col-md-6 masthead-image">
-                <!-- The featured image URL goes in the src attribute -->
-                {% if "placeholder" in securityfeature.featured_image.url %}
-                <img src="https://res.cloudinary.com/djebesftb/image/upload/v1711031059/Web-Application-Security_1_wbxthr.webp" width="100%">
-                {% else %}
-                <img src=" {{ securityfeature.featured_image.url }}" width="100%">
-                {% endif %}
+        </div>
+    </div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <div class="card mb-3 securityfeature-detail-card">
+                    <h5 class="card-header securityfeature-detail-header">
+                        Description
+                    </h5>
+                    <div class="card-body">
+                        <p class="card-text">{{ securityfeature.description | safe }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-3 securityfeature-detail-card">
+                    <h5 class="card-header securityfeature-detail-header">
+                        Ingredients
+                    </h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ securityfeature.ingredients | safe }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-3 securityfeature-detail-card">
+                    <h5 class="card-header securityfeature-detail-header">Method</h5>
+                    <div class="card-body">
+                        <div class="card-text">{{ securityfeature.method | safe }}</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Comments section -->
+{% if comments %}
 <div class="container">
     <div class="row">
-        <div class="col card mb-4  mt-3 left  top">
-            <div class="card-body">
-                <!-- The SecurityFeature content goes inside the card-text. -->
-                <!-- Use the | safe filter inside the template tags -->
-                <p class="card-text ">
-                    {{ securityfeature.content | safe }}
-                </p>
-                <div class="row">
-
-                    <div class="col-1">
-                        <!-- The number of likes goes before the closing strong tag -->
-                        <strong class="text-secondary"><i class="far fa-heart"></i> {{ securityfeature.number_of_likes }} </strong>
-                    </div>
-                    <div class="col-1">
-                        {% with comments.count as total_comments %}
-                        <strong class="text-secondary"><i class="far fa-comments"></i>
-                            <!-- Our total_comments variable goes before the closing strong tag -->
-                            {{ total_comments }}</strong>
-                        {% endwith %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
         <div class="col">
-            <hr>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8 card mb-4  mt-3 ">
-            <h3>Comments:</h3>
-            <div class="card-body">
-                <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
-                {% for comment in comments %}
-                <div class="comments" style="padding: 10px;">
-                    <p class="font-weight-bold">
-                        <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
-                        {{ comment.name }}
-                        <span class=" text-muted font-weight-normal">
-                            <!-- The comment's created date goes here -->
-                            {{ comment.created_on }}
-                        </span> wrote:
-                    </p>
-                    <!-- The body of the comment goes before the | -->
-                    {{ comment.body | linebreaks }}
+            <div class="card securityfeature-detail-card">
+                <h3 class="card-header securityfeature-detail-header text-left">Comments</h3>
+                <div class="card-body">
+                    {% for comment in comments %}
+                    <div>
+                        <p class="font-weight-bold">
+                            {{ comment.name }}
+                            <span class=" text-muted font-weight-normal">
+                                {{ comment.created_on }}
+                            </span>
+                            {% if user.is_authenticated and user.username == comment.name %}
+                            <span class="comment-action-btn pl-2">
+                                <a href="{% url 'update_comment' comment.id %}" aria-label="edit-comment"><i
+                                        class="fas fa-edit link-primary"></i></a>
+                                <a href="{% url 'delete_comment' comment.id %}" aria-label="delete-comment"><i
+                                        class="fas fa-times"></i></a>
+                            </span>
+                            {% endif %}
+                        </p>
+                        {{ comment.body | linebreaks }}
+                        <hr>
+                    </div>
+                    {% endfor %}
                 </div>
-                <!-- Our for loop ends here -->
-                {% endfor %}
-            </div>
-        </div>
-        <div class="col-md-4 card mb-4  mt-3 ">
-            <div class="card-body">
-                <!-- For later -->
             </div>
         </div>
     </div>
 </div>
+{% endif %}
+
+{% if user.is_authenticated %}
+<!-- Create comment -->
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card securityfeature-detail-card mb-3 mt-3">
+                <div class="card-body">
+                    <p>Leave a comment as: {{ user.username }}</p>
+                    <form method="post">
+                        {{ comment_form | crispy }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-dark">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
 
 {% endblock content %}
