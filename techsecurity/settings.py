@@ -30,9 +30,9 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-X_FRAME_OPTIONS = 'DENY'
+#X_Frame_OPTIONS = 'SAMEORIGIN'
 
 ALLOWED_HOSTS = ['pp4-web-application-security-aaef0fe6b0f0.herokuapp.com',  '8000-noahsamawi-pp4webapplic-ep08heoaona.ws-eu110.gitpod.io', 'localhost']
 
@@ -45,12 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.sites',
-    'cloudinary_storage',
-    'django.contrib.staticfiles',
-    'cloudinary',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'cloudinary_storage',
+    'django.contrib.staticfiles',
+    'cloudinary',
     'django_extensions',
     'django_summernote',
     'crispy_forms',
@@ -114,16 +114,16 @@ WSGI_APPLICATION = 'techsecurity.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+# DATABASES = {
+#     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+# }
 
 
 # Password validation
@@ -175,10 +175,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'admin@tech.com'  
-EMAIL_PORT = 8000  # Replace with your SMTP server port
-EMAIL_USE_TLS = True 
-EMAIL_HOST_USER = 'admin'  # Replace with your SMTP username
-EMAIL_HOST_PASSWORD = 'IT#22#apfel'  # Replace with your SMTP password

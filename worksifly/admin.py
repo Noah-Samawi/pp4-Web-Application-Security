@@ -1,14 +1,15 @@
 from django.contrib import admin
-from .models import TechSecurityItem, SecurityFeature, Comment
 from django_summernote.admin import SummernoteModelAdmin
+from .models import TechSecurityItem, SecurityFeature, Comment
+
 
 @admin.register(SecurityFeature)
 class SecurityFeatureAdmin(SummernoteModelAdmin):
     """Allows admin to manage security feature via the admin panel"""
-    list_display = ('title', 'slug', 'status', 'created_on')
-    search_fields = ['title', 'description']  
     list_filter = ('status', 'created_on')
-    summernote_fields = ('description', )  
+    list_display = ('title', 'slug', 'status', 'created_on')
+    search_fields = ('title', 'description')
+    summernote_fields = ('description', 'method')
 
 
 @admin.register(Comment)
@@ -21,8 +22,10 @@ class CommentAdmin(admin.ModelAdmin):
 
     def get_name(self, obj):
         return obj.name
-    def approve_comments(self, security_features, queryset):
+
+    def approve_comments(self, securityfeatures, queryset):
         queryset.update(approved=True)
+
 
 @admin.register(TechSecurityItem)
 class TechSecurityAdmin(admin.ModelAdmin):

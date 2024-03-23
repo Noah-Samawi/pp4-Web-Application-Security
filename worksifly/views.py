@@ -1,6 +1,6 @@
 """Views"""
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -18,12 +18,14 @@ class Home(generic.TemplateView):
 
 class SecurityFeatureList(generic.ListView):
     """
-    This view is used to display all security features in the browse securityfeatures page
+    This view is used to display all security
+    features in the browse securityfeatures page
     """
     model = SecurityFeature
     queryset = SecurityFeature.objects.filter(status=1).order_by("-created_on")
     template_name = "browse_securityfeatures.html"
     paginate_by = 8
+
 
 class SecurityFeatureDetail(View):
     """
@@ -34,13 +36,12 @@ class SecurityFeatureDetail(View):
         """
         Retrives the security feature and related comments from the database
         """
-        bookmarked = False
-        queryset = SecurityFeature.objects.filter(status=1)
+        queryset = SecurityFeature.objects.all()
         securityfeature = get_object_or_404(queryset, slug=slug)
-        comments = securityfeature.comments.filter(approved=True).order_by("-created_on")
-        liked = False
-        if securityfeature.likes.filter(id=self.request.user.id).exists():
-            liked = True
+        comments = securityfeature.comments.order_by('created_on')
+        bookmarked = False
+        if securityfeature.bookmarks.filter(id=self.request.user.id).exists():
+            bookmarked = True
 
         return render(
             request,
@@ -49,7 +50,7 @@ class SecurityFeatureDetail(View):
                 "securityfeature": securityfeature,
                 "comments": comments,
                 "comment_form": CommentForm(),
-                "techsecure_form": TechSecurityForm(),
+                "techsecurity_form": TechSecurityForm(),
                 "bookmarked": bookmarked
             },
         )
@@ -108,6 +109,8 @@ class SecurityFeatureDetail(View):
                 "bookmarked": bookmarked
             },
         )
+
+
 class AddSecurityFeature(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     """This view is used to allow logged in users to create a security feature"""
     form_class = SecurityFeatureForm
