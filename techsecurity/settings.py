@@ -35,7 +35,7 @@ DEBUG = True
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 
-ALLOWED_HOSTS = ['pp4-web-application-security-aaef0fe6b0f0.herokuapp.com',  '8000-noahsamawi-pp4webapplic-8vz8jkjum6x.ws-eu110.gitpod.io', 'localhost']
+ALLOWED_HOSTS = ['pp4-web-application-security-aaef0fe6b0f0.herokuapp.com',  '8000-noahsamawi-pp4webapplic-ep08heoaona.ws-eu110.gitpod.io', 'localhost']
 
 # Application definition
 
@@ -115,16 +115,16 @@ WSGI_APPLICATION = 'techsecurity.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
-#     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
 # }
+
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+}
 
 
 # Password validation
