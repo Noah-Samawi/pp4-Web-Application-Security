@@ -35,7 +35,7 @@ DEBUG = True
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 
-ALLOWED_HOSTS = ['pp4-web-application-security-aaef0fe6b0f0.herokuapp.com',  '8000-noahsamawi-pp4webapplic-ep08heoaona.ws-eu110.gitpod.io', 'localhost']
+ALLOWED_HOSTS = ['pp4-web-application-security-aaef0fe6b0f0.herokuapp.com',  '8000-noahsamawi-pp4webapplic-ffcocheu1k8.ws-eu110.gitpod.io', 'localhost']
 
 # Application definition
 

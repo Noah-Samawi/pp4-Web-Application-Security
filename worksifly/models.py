@@ -81,17 +81,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment {self.body} by {self.user.username}"
-
-
-    # class Migration(migrations.Migration):
-
-    #     dependencies = [
-    #         ('worksifly', '0001_initial'),
-    #     ]
-
-    #     operations = [
-    #         migrations.RunSQL(
-    #             'DROP TABLE worksifly_securityfeature_bookmarks;',
-    #             reverse_sql='CREATE TABLE worksifly_securityfeature_bookmarks(...);'
-    #         ),
-    #     ]
