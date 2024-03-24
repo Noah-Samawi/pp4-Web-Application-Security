@@ -351,8 +351,8 @@ class DeleteComment(
         return reverse_lazy('securityfeature_detail', kwargs={'slug': securityfeature.slug})
 
 
-class SecurityFeatureLike(View):
-    
+class SecurityFeatureLike(LoginRequiredMixin, View):
+
     def securityfeature(self, request, slug, *args, **kwargs):
         securityfeature = get_object_or_404(SecurityFeature, slug=slug)
         if securityfeature.likes.filter(id=request.user.id).exists():
@@ -360,4 +360,4 @@ class SecurityFeatureLike(View):
         else:
             securityfeature.likes.add(request.user)
 
-        return HttpResponseRedirect(reverse('securityfeature_detail', args=[slug]))        
+        return HttpResponseRedirect(reverse('securityfeature_detail', args=[slug]))
