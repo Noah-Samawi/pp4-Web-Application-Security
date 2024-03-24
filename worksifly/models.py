@@ -1,4 +1,4 @@
-from django.db import models, migrations
+from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django_extensions.db.fields import AutoSlugField
@@ -10,23 +10,23 @@ STATUS = ((0, "Save for later"), (1, "Publish Now"))
 
 class SecurityFeature(models.Model):
     """Model for security feature"""
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200, unique=True)
+    title = models.CharField(max_length=50, unique=True)
+    slug = AutoSlugField(populate_from='title', unique=True)
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="blog_security_features")
-    created_on = models.DateTimeField(auto_now_add=True)
+        User, on_delete=models.CASCADE, related_name="security_features")
+    created_on = models.DateTimeField(auto_now=True)
     updated_on = models.DateTimeField(auto_now=True)
+    setup_time = models.CharField(max_length=10, default=0)
+    search_time = models.CharField(max_length=10, default=0)
     description = models.TextField()
+    ingredients = models.TextField(validators=[textfield_not_empty])
     method = models.TextField(validators=[textfield_not_empty])
     image = CloudinaryField('image', default='placeholder')
     status = models.IntegerField(choices=STATUS, default=1)
     bookmarks = models.ManyToManyField(
-        User, related_name='bookmarks', blank=True)
+        User, related_name='bookmark', default=None, blank=True)
     likes = models.ManyToManyField(
-        User, related_name='blog_security_features_like', blank=True)
-    # Added default value for the excerpt field
-    excerpt = models.CharField(max_length=255, default='')
-
+        User, related_name='securityfeature_like', blank=True)
 
     class Meta:
         """To display the security features by created_on in ascending order"""
@@ -38,6 +38,9 @@ class SecurityFeature(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+
+    def number_of_likes(self):
+        return self.likes.count()
 
 
 class TechSecurityItem(models.Model):

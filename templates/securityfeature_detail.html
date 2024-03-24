@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Web Application Security | {{ securityfeature.title }}{% endblock %}
+{% block title %}The Optimal Solutions | {{ securityfeature.title }}{% endblock %}
 {% block content %}
 {% load crispy_forms_tags %}
 
@@ -9,7 +9,7 @@
             <div class="row no-gutters">
                 <div class="col-12 col-md-4">
                     {% if "placeholder" in securityfeature.image.url %}
-                    <img src="https://res.cloudinary.com/djebesftb/image/upload/v1711031059/Web-Application-Security_1_wbxthr.webp"
+                    <img src="https://res.cloudinary.com/djebesftb/image/upload/v1711297822/websecurity2_dpl9bt.jpg"
                         class="securityfeature-detail-img" alt="placeholder image">
                     {% else %}
                     <img src=" {{ securityfeature.image.url }}" alt="securityfeature image" class="securityfeature-detail-img">
@@ -24,7 +24,11 @@
                         <div class="mb-5">
                             <p>
                                 <span><i class="far fa-clock pr-2"> </i></span>
-                                <span>Tech Security: {{ securityfeature.tech_security }}</span>
+                                <span>Setup Time: {{ securityfeature.setup_time }}</span>
+                            </p>
+                            <p>
+                                <span><i class="far fa-clock pr-2"></i></span>
+                                <span>Search Time: {{ securityfeature.search_time }}</span>
                             </p>
                         </div>
                         <!-- securityfeature action buttons -->

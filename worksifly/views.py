@@ -349,3 +349,15 @@ class DeleteComment(
         """ Return to securityfeature detail view when comment deleted sucessfully"""
         securityfeature = self.object.securityfeature
         return reverse_lazy('securityfeature_detail', kwargs={'slug': securityfeature.slug})
+
+
+class SecurityFeatureLike(View):
+    
+    def securityfeature(self, request, slug, *args, **kwargs):
+        securityfeature = get_object_or_404(SecurityFeature, slug=slug)
+        if securityfeature.likes.filter(id=request.user.id).exists():
+            securityfeature.likes.remove(request.user)
+        else:
+            securityfeature.likes.add(request.user)
+
+        return HttpResponseRedirect(reverse('securityfeature_detail', args=[slug]))        
