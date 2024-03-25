@@ -19,7 +19,6 @@ class SecurityFeature(models.Model):
     setup_time = models.CharField(max_length=10, default=0)
     search_time = models.CharField(max_length=10, default=0)
     description = models.TextField()
-    ingredients = models.TextField(validators=[textfield_not_empty])
     method = models.TextField(validators=[textfield_not_empty])
     image = CloudinaryField('image', default='placeholder')
     status = models.IntegerField(choices=STATUS, default=1)
