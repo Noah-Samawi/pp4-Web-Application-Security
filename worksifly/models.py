@@ -24,12 +24,12 @@ class SecurityFeature(models.Model):
     image = CloudinaryField('image', default='placeholder')
     status = models.IntegerField(choices=STATUS, default=1)
     bookmarks = models.ManyToManyField(
-        User, related_name='bookmark', default=None, blank=True)
+        User, related_name='bookmarks', default=None, blank=True)
     likes = models.ManyToManyField(
-        User, related_name='securityfeature_like', blank=True)
+        User, related_name='liked_security_features', blank=True)
 
     class Meta:
-        """To display the security features by created_on in ascending order"""
+        """To display the security features by created_on in descending order"""
         ordering = ['-created_on']
 
     def get_absolute_url(self):
@@ -56,9 +56,9 @@ class TechSecurityItem(models.Model):
     ]
 
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="tech_security")
+        User, on_delete=models.CASCADE, related_name="tech_security_items")
     security_feature = models.ForeignKey(
-        SecurityFeature, on_delete=models.CASCADE, related_name="tech_security_item")
+        SecurityFeature, on_delete=models.CASCADE, related_name="tech_security_items")
     day = models.IntegerField(choices=DAY_CHOICES, default=0)
 
     class Meta:
@@ -73,14 +73,14 @@ class Comment(models.Model):
     """Model for Comment"""
     security_feature = models.ForeignKey(
         SecurityFeature, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=80)
     email = models.EmailField()
     body = models.TextField()
     created_on = models.DateTimeField(auto_now=True)
 
     class Meta:
-        """To display the comments by created_on in ascending order"""
-        ordering = ['created_on']
+        """To display the comments by created_on in descending order"""
+        ordering = ['-created_on']
 
     def __str__(self):
-        return f"Comment {self.body} by {self.user.username}"
+        return f"Comment {self.body} by {self.name}"

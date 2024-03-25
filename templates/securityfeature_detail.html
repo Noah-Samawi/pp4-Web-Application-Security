@@ -175,6 +175,47 @@
 {% endif %}
 
 {% if user.is_authenticated %}
+<!-- Like/Bookmark -->
+<div class="container">
+    {% if user.is_authenticated %}
+        <form action="{% url 'securityfeature_like' securityfeature.slug %}" method="POST">
+            {% csrf_token %}
+            {% if liked %}
+            <span>
+                <button class="btn-like" type="submit" name="securityfeature_id" value="{{securityfeature.slug}}">
+                    <i class="fa-solid fa-heart fa-xl" style="color: #db0000;"></i>
+                </button>
+                {{ securityfeature.number_of_likes }}
+            </span>
+            {% else %}
+            <span>
+                <button class="btn-like" type="submit" name="securityfeature_id" value="{{securityfeature.slug}}">
+                    <i class="far fa-heart fa-xl"></i>
+                </button>
+                {{ securityfeature.number_of_likes }}
+            </span>
+            {% endif %}
+        </form>
+        <form action="{% url 'bookmark_securityfeature' securityfeature.slug %}" method="POST"> <!-- Updated form action -->
+            {% csrf_token %}
+            {% if bookmarked %}
+            <span>
+                <button class="btn-like" type="submit" name="securityfeature_id" value="{{securityfeature.slug}}">
+                    <i class="fa-solid fa-bookmark fa-xl"></i>
+                </button>
+            </span>
+            {% else %}
+            <span>
+                <button class="btn-like" type="submit" name="securityfeature_id" value="{{securityfeature.slug}}">
+                    <span><i class="fa-regular fa-bookmark fa-xl"></i></span> 
+                </button>
+            </span>
+            {% endif %}
+        </form>
+    {% else %}
+        <span><i class="far fa-heart fa-xl"></i> {{ securityfeature.number_of_likes }}</span>
+    {% endif %}
+</div>
 <!-- Create comment -->
 <div class="container">
     <div class="row">
@@ -193,5 +234,4 @@
     </div>
 </div>
 {% endif %}
-
 {% endblock content %}

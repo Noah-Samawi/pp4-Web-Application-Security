@@ -1,6 +1,6 @@
 """Views"""
 
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -28,18 +28,19 @@ class SecurityFeatureList(generic.ListView):
 
 
 class SecurityFeatureDetail(View):
-    """
-    This view is used to display the full security feature details including comments.
-    It also includes the comment form and add to tech security form
-    """
+    """Full SecurityFeature View, Single SecurityFeature per page"""
+
     def get(self, request, slug, *args, **kwargs):
-        """
-        Retrives the security feature and related comments from the database
-        """
-        queryset = SecurityFeature.objects.all()
+        """Get function to obtain all information for securityfeature detail page"""
+        queryset = SecurityFeature.objects.filter(status=1, slug=slug)
         securityfeature = get_object_or_404(queryset, slug=slug)
-        comments = securityfeature.comments.order_by('created_on')
+        comments = securityfeature.comments.order_by('created_on')  # Fix applied here
+        liked = False
         bookmarked = False
+
+        if securityfeature.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
         if securityfeature.bookmarks.filter(id=self.request.user.id).exists():
             bookmarked = True
 
@@ -49,54 +50,36 @@ class SecurityFeatureDetail(View):
             {
                 "securityfeature": securityfeature,
                 "comments": comments,
+                "bookmarked": bookmarked,
+                "liked": liked,
                 "comment_form": CommentForm(),
-                "techsecurity_form": TechSecurityForm(),
-                "bookmarked": bookmarked
             },
         )
 
-    def post(self, request, slug):
-        """
-        This method is called when a POST request is made to the view
-        via the comment form or the tech security form.
-        """
-        queryset = SecurityFeature.objects.filter(status=1)
+    def post(self, request, slug, *args, **kwargs):
+        """Post function for comment form on securityfeature detailed page"""
+        queryset = SecurityFeature.objects.filter(status=1, slug=slug)
         securityfeature = get_object_or_404(queryset, slug=slug)
-        comments = securityfeature.comments.order_by('created_on')
+        comments = securityfeature.comments.order_by('created_on')  # Fix applied here
+        liked = False
         bookmarked = False
+
+        if securityfeature.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
         if securityfeature.bookmarks.filter(id=self.request.user.id).exists():
             bookmarked = True
 
         comment_form = CommentForm(data=request.POST)
-        techsecurity_form = TechSecurityForm(data=request.POST)
 
         if comment_form.is_valid():
-            comment_form.instance.email = request.user.email
-            comment_form.instance.name = request.user.username
             comment = comment_form.save(commit=False)
-            comment.securityfeature = securityfeature
+            comment.user = request.user  # Assign the current user to the comment's user field
+            comment.security_feature = securityfeature  # Associate the comment with the security feature
             comment.save()
-            messages.success(self.request, 'Comment successfully added')
+            messages.success(request, 'Comment Successfully Added')
         else:
-            messages.error(self.request, 'Comment form is not valid')
-
-        if techsecurity_form.is_valid():
-            queryset = TechSecurityItem.objects.filter(
-                user=request.user, day=request.POST['day'])
-            techsecurity_item = queryset.first()
-
-            if techsecurity_item:
-                techsecurity_item.securityfeature = securityfeature
-                messages.success(self.request, 'TechSecurity successfully updated')
-            else:
-                techsecurity_item = techsecurity_form.save(commit=False)
-                techsecurity_item.user = request.user
-                techsecurity_item.securityfeature = securityfeature
-                messages.success(self.request, 'SecurityFeature added to techsecurity')
-
-            techsecurity_item.save()
-        else:
-            messages.error(self.request, 'TechSecurity form is not valid')
+            comment_form = CommentForm()
 
         return render(
             request,
@@ -104,11 +87,31 @@ class SecurityFeatureDetail(View):
             {
                 "securityfeature": securityfeature,
                 "comments": comments,
-                "comment_form": comment_form,
-                "techsecurity_form": techsecurity_form,
-                "bookmarked": bookmarked
+                "liked": liked,
+                "bookmarked": bookmarked,
+                "comment_form": CommentForm(),
             },
         )
+
+
+class SecurityFeatureLike(View):
+    """Add a like to a securityfeature"""
+
+    def post(self, request, slug):
+        """
+        Find securityfeature and post like (user-id) to model
+        See Credit 9. in README
+        """
+        securityfeature = get_object_or_404(SecurityFeature, slug=slug)
+        origin = request.META.get("HTTP_REFERER")
+
+        if securityfeature.likes.filter(id=request.user.id).exists():
+            securityfeature.likes.remove(request.user)
+            messages.success(request, 'Like successfully removed')
+        else:
+            securityfeature.likes.add(request.user)
+            messages.success(request, 'Like successfully added')
+        return redirect(origin)
 
 
 class AddSecurityFeature(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
@@ -346,18 +349,7 @@ class DeleteComment(
         return super(DeleteComment, self).delete(request, *args, **kwargs)
 
     def get_success_url(self):
-        """ Return to securityfeature detail view when comment deleted sucessfully"""
+        """ Return to securityfeature detail view when comment deleted successfully"""
         securityfeature = self.object.securityfeature
         return reverse_lazy('securityfeature_detail', kwargs={'slug': securityfeature.slug})
 
-
-class SecurityFeatureLike(LoginRequiredMixin, View):
-
-    def securityfeature(self, request, slug, *args, **kwargs):
-        securityfeature = get_object_or_404(SecurityFeature, slug=slug)
-        if securityfeature.likes.filter(id=request.user.id).exists():
-            securityfeature.likes.remove(request.user)
-        else:
-            securityfeature.likes.add(request.user)
-
-        return HttpResponseRedirect(reverse('securityfeature_detail', args=[slug]))
