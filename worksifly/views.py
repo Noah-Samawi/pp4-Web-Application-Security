@@ -1,14 +1,22 @@
 """Views"""
 
+"""Views"""
+
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.views import generic, View
 from .models import SecurityFeature, TechSecurityItem, Comment
-from .forms import CommentForm, SecurityFeatureForm, TechSecurityForm
+from .forms import CommentForm, SecurityFeatureForm
+
+
+# class SecurityFeatureView(View):
+#     def get(self, request):
+#         # Add your logic here
+#         return HttpResponse("Security Feature View")
 
 
 class Home(generic.TemplateView):
@@ -34,7 +42,7 @@ class SecurityFeatureDetail(View):
         """Get function to obtain all information for securityfeature detail page"""
         queryset = SecurityFeature.objects.filter(status=1, slug=slug)
         securityfeature = get_object_or_404(queryset, slug=slug)
-        comments = securityfeature.comments.order_by('created_on')  # Fix applied here
+        comments = securityfeature.comments.order_by('created_on')
         liked = False
         bookmarked = False
 
@@ -60,7 +68,7 @@ class SecurityFeatureDetail(View):
         """Post function for comment form on securityfeature detailed page"""
         queryset = SecurityFeature.objects.filter(status=1, slug=slug)
         securityfeature = get_object_or_404(queryset, slug=slug)
-        comments = securityfeature.comments.order_by('created_on')  # Fix applied here
+        comments = securityfeature.comments.order_by('created_on')
         liked = False
         bookmarked = False
 
@@ -74,8 +82,8 @@ class SecurityFeatureDetail(View):
 
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
-            comment.user = request.user  # Assign the current user to the comment's user field
-            comment.security_feature = securityfeature  # Associate the comment with the security feature
+            comment.user = request.user
+            comment.security_feature = securityfeature
             comment.save()
             messages.success(request, 'Comment Successfully Added')
         else:
@@ -215,11 +223,7 @@ class DeleteSecurityFeature(
         """
         This function is used to display sucess message given
         SucessMessageMixin cannot be used in generic.DeleteView.
-        Credit: https://stackoverflow.com/questions/24822509/
-        success-message-in-deleteview-not-shown
-        """
-        messages.success(self.request, self.success_message)
-        return super(DeleteSecurityFeature, self).delete(request, *args, **kwargs)
+        Credit"""
 
 
 class BookmarkSecurityFeature(LoginRequiredMixin, View):
@@ -285,7 +289,7 @@ class TechSecurity(LoginRequiredMixin, View):
             techsecurity[day] = day_tech_security_item or None
 
         return render(
-            request, 'techsecurity.html', {'techsecurity': techsecurity})
+            request, 'my_techsecurity.html', {'techsecurity': techsecurity})
 
 
 class UpdateComment(

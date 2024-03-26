@@ -12,23 +12,23 @@
     <br>
     <!-- Tech Security Card -->
     <div class="row card-deck justify-content-center">
-        {% for day, tech in techsecurity.items  %}
+        {% for day, tech in techsecurity.items %}
         <div class="col-sm-6 col-md-4 col-lg-3 px-1 d-flex align-items-stretch">
             <div class="card card-detail techsecurity-card mb-3 shadow-sm mx-auto mx-sm-2">
                 <div class="card-header techsecurity-card-header">
-                    <h2 class="card-title techsecurity-title">{{ day }} </h2>
+                    <h2 class="card-title techsecurity-title">{{ day }}</h2>
                 </div>
                 {% if tech %}
                 {% if "placeholder" in tech.securityfeature.image.url %}
-                <img src="https://res.cloudinary.com/djebesftb/image/upload/v1711296271/websecurity_1_ie3i2a.jpg"
-                    class="card-img-top" alt="placeholder image">
+                <img src="https://res.cloudinary.com/djebesftb/image/upload/v1711296271/websecurity_1_ie3i2a.jpg" class="card-img-top" alt="placeholder image">
                 {% else %}
-                <img src=" {{ tech.securityfeature.image.url }}" alt="securityfeature image" class="card-img-top">
+                <img src="{{ tech.securityfeature.image.url }}" alt="securityfeature image" class="card-img-top">
                 {% endif %}
                 <div class="card-body">
                     <h3 class="card-title securityfeature-detail-title text-center text-truncate">{{ tech.securityfeature.title }}</h3>
-                    <a href="{% url 'securityfeature' tech.securityfeature.slug %}" class="stretched-link"
-                        aria-label="securityfeature-detail"></a>
+                    {% if tech.securityfeature.slug %}
+                    <a href="{% url 'securityfeature_detail' tech.securityfeature.slug %}" class="stretched-link" aria-label="securityfeature-detail"></a>
+                    {% endif %}
                 </div>
                 {% else %}
                 <i class="fas fa-calendar-plus mp-icon fa-6x card-img-top"></i>
