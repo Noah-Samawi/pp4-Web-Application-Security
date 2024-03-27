@@ -19,20 +19,20 @@
                     <h2 class="card-title techsecurity-title">{{ day }}</h2>
                 </div>
                 {% if tech %}
-                {% if "placeholder" in tech.securityfeature.image.url %}
-                <img src="https://res.cloudinary.com/djebesftb/image/upload/v1711296271/websecurity_1_ie3i2a.jpg" class="card-img-top" alt="placeholder image">
-                {% else %}
-                <img src="{{ tech.securityfeature.image.url }}" alt="securityfeature image" class="card-img-top">
-                {% endif %}
                 <div class="card-body">
+                    {% if "placeholder" in tech.securityfeature.image.url %}
+                    <img src="https://res.cloudinary.com/djebesftb/image/upload/v1711544536/Web-Application-Security1_utblhf.webp" class="card-img-top" alt="placeholder image">
+                    {% else %}
+                    <img src="{{ tech.securityfeature.image.url }}" alt="securityfeature image" class="card-img-top">
+                    {% endif %}
                     <h3 class="card-title securityfeature-detail-title text-center text-truncate">{{ tech.securityfeature.title }}</h3>
                     {% if tech.securityfeature.slug %}
                     <a href="{% url 'securityfeature_detail' tech.securityfeature.slug %}" class="stretched-link" aria-label="securityfeature-detail"></a>
                     {% endif %}
                 </div>
                 {% else %}
-                <i class="fas fa-calendar-plus mp-icon fa-6x card-img-top"></i>
-                <div class="card-body">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-plus mp-icon fa-6x card-img-top"></i>
                     <h3 class="card-title securityfeature-detail-title text-center">Add SecurityFeature</h3>
                     <a href="{% url 'browse_securityfeatures' %}" class="stretched-link" aria-label="browse-securityfeatures"></a>
                 </div>

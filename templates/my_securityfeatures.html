@@ -11,19 +11,19 @@
     </div>
     <hr class="home-break">
     <br>
-    <!--  Security Feature Cards -->
+    <!-- Security Feature Cards -->
     <div class="row card-deck">
-        {% for securityfeature in securityfeature_list  %}
+        {% for securityfeature in securityfeature_list %}
         <div class="col-sm-6 col-md-4 col-lg-3 px-1 d-flex align-items-stretch">
             <div class="card card-detail securityfeature-card mb-3 shadow-sm mx-auto mx-sm-2">
                 {% if "placeholder" in securityfeature.image.url %}
                 <img src="https://res.cloudinary.com/djebesftb/image/upload/v1711031059/Web-Application-Security_1_wbxthr.webp"
                     class="card-img-top" alt="placeholder image">
                 {% else %}
-                <img src=" {{ securityfeature.image.url }}" alt="securityfeature image" class="card-img-top">
+                <img src="{{ securityfeature.image.url }}" alt="securityfeature image" class="card-img-top">
                 {% endif %}
                 <div class="card-body pb-1">
-                    <!--  checks if securityfeature is unpublished -->
+                    <!-- Checks if securityfeature is unpublished -->
                     {% if securityfeature.status == 0 %}
                     <h2 class="card-title securityfeature-detail-title text-truncate">{{ securityfeature.title }}
                         <span class="draft">(DRAFT)</span></h2>
@@ -45,4 +45,4 @@
 {% include "paginator.html" %}
 {% endif %}
 
-{%endblock%}
+{% endblock %}

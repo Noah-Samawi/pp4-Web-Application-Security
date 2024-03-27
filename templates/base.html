@@ -13,15 +13,12 @@
     <meta name="keywords" content="Digital Security Hub, Next-Gen Security Solutions, Network Protection Center, Secure Tomorrow's Networks">
     <meta name="author" content="Software Guys">
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180"
-        href="https://res.cloudinary.com/djebesftb/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1710680516/apple-touch-icon_kgfiax.png">
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="https://res.cloudinary.com/djebesftb/image/upload/v1710680526/favicon-32x32_kjxvvy.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/djebesftb/image/upload/v1711536742/apple-touch-icon_givvod.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/djebesftb/image/upload/v1711536725/favicon-32x32_tqppu1.png">
 
     <!-- Bootstrap CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>{% block title %}The Optimal Solutions{% endblock %}</title>
 </head>
@@ -31,156 +28,116 @@
         <!-- Header starts -->
         <header>
             <!-- Navigation -->
-            <nav class="navbar navbar-expand-lg">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container">
                     <a class="navbar-brand" href="{% url 'home' %}">
-                        <span class="brand"
-                            style="font-family: Lato, sans-serif;color: #4A4A4F;font-size: 1.4rem;font-weight: 600;">web<span
-                                class="red-o"style="color:#E84610;">applica</span>tion<span class="thin">|security</span>
+                        <span class="brand">web<span class="red-o" style="color:#4aa1d3;">applica</span>tion<span class="thin">|security</span>
                         </span>
-                        </a>
-                    <button class="navbar-light navbar-toggler ml-auto" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                        <ul class="navbar-nav mb-2 mb-lg-0">
-                            <li class="nav-item ">
-                                <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'browse_securityfeatures' %}">Browse SecurityFeatures</a>
+                                <a class="nav-link" href="{% url 'browse_securityfeatures' %}">Browse Security Features</a>
                             </li>
                             {% if user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'add_securityfeature' %}">Add SecurityFeature </a>
+                                <a class="nav-link" href="{% url 'add_securityfeature' %}">Add Security Feature</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'my_techsecurity' %}">My Tech Security</a>
                             </li>
-                            <li class="nav-item d-block d-lg-none">
-                                <a class="nav-link" href="{% url 'my_securityfeatures' %}">My SecurityFeature</a>
-                            </li>
-                            <li class="nav-item d-block d-lg-none">
-                                <a class="nav-link" href="{% url 'my_bookmarks' %}">My Bookmarks</a>
-                            </li>
-                            <li class="nav-item d-block d-lg-none">
-                                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-                            </li>
-                            {% else %}
-                            <li class="nav-item d-block d-lg-none">
-                                <a class="nav-link" href="{% url 'account_signup' %}">Sign up</a>
-                            </li>
-                            <li class="nav-item d-block d-lg-none">
-                                <a class="nav-link" href="{% url 'account_login' %}">Log in</a>
-                            </li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                    <div class="d-none d-lg-block">
-                        <ul class="navbar-nav mb-2 mb-lg-0">
-                            {% if user.is_authenticated %}
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <span><i class="fas fa-user profile-icon"></i>{{ user.username }}</span>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ user.username }}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{% url 'my_securityfeatures' %}">My SecurityFeatures</a>
+                                    <a class="dropdown-item" href="{% url 'my_securityfeatures' %}">My Security Features</a>
                                     <a class="dropdown-item" href="{% url 'my_bookmarks' %}">My Bookmarks</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
                                 </div>
                             </li>
                             {% else %}
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-toggle="dropdown" aria-expanded="false">
-                                    <span>My Account</span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{% url 'account_signup' %}">Sign up</a>
-                                    <a class="dropdown-item" href="{% url 'account_login' %}">Log in</a>
-                                </div>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account_signup' %}">Sign up</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account_login' %}">Log in</a>
                             </li>
                             {% endif %}
                         </ul>
                     </div>
-
-
                 </div>
             </nav>
         </header>
         <!-- Header ends -->
-        <!-- Below from Code Institute's I Think Therefore I Blog project -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    {% for message in messages %}
-                    <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
-                        {{ message | safe }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+        <!-- Main Content -->
+        <main class="main-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        {% for message in messages %}
+                        <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message|safe }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
             </div>
-        </div>
-
-        <main class="flex-shrink-0 main-bg">
 
             {% block content %}
             <!-- Content Goes here -->
             {% endblock content %}
         </main>
+        <!-- Main Content ends -->
 
         <!-- Footer -->
         <footer>
             <div class="container footer-container">
                 <ul class="social-networks">
-                    <li>
-                        <a href="https://www.facebook.com/" target="_blank" rel="noopener"
-                            aria-label="Visit our Facebook page (opens in new tab)"><i class="fab fa-facebook"></i></a>
-                    </li>
-                    <li>
-                        <a href="https://www.instagram.com/" target="_blank" rel="noopener"
-                            aria-label="Visit our Instagram page (opens in new tab)"><i
-                                class="fab fa-instagram"></i></a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com/" target="_blank" rel="noopener"
-                            aria-label="Visit our Twitter page (opens in new tab)"><i class="fab fa-twitter"></i></a>
-                    </li>
-                    <li>
-                        <a href="https://www.youtube.com/" target="blank" rel="noopener"
-                            aria-label="Visit out Youtube page (opens in new tab)"><i class="fab fa-youtube"></i></a>
-                    </li>
+                    <li><a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Visit our Facebook page (opens in new tab)"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Visit our Instagram page (opens in new tab)"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Visit our Twitter page (opens in new tab)"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="Visit our Youtube page (opens in new tab)"><i class="fab fa-youtube"></i></a></li>
                 </ul>
             </div>
         </footer>
-        <!-- End of Footer -->
-        <!-- Font Awesome script -->
-        <script src="https://kit.fontawesome.com/08445b6b20.js" crossorigin="anonymous"></script>
-        ...
-        <!-- Bootstrap scripts -->
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
-        </script>
+        <!-- Footer ends -->
+    </div>
 
-        <!-- Script to manage messages fading from Code Institute's I Think Therefore I Blog project -->
-        <script>
-            setTimeout(function () {
-                let messages = document.getElementById('msg');
-                let alert = new bootstrap.Alert(messages);
-                alert.close();
-            }, 2000);
-        </script>
+    <!-- Script to manage messages fading -->
+    <script>
+        setTimeout(function () {
+            let messages = document.querySelectorAll('.alert');
+            messages.forEach(function (msg) {
+                new bootstrap.Alert(msg).close();
+            });
+        }, 3000);
+    </script>
+
+    <!-- Font Awesome script -->
+    <script src="https://kit.fontawesome.com/08445b6b20.js" crossorigin="anonymous"></script>
+
+     <!-- Bootstrap scripts -->
+     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+ </script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+     integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+ </script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
+ </script>
 </body>
 
 </html>

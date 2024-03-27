@@ -7,16 +7,16 @@
     <div class="container px-2 py-3">
         <div class="row flex-md-row-reverse py-3 m-0">
             <div class="col-md-7 col-lg-5 p-0 pl-md-5 align-self-center">
-                <img src="https://res.cloudinary.com/djebesftb/image/upload/v1711031059/Web-Application-Security_1_wbxthr.webp"
+                <img src="https://res.cloudinary.com/djebesftb/image/upload/v1711544536/Web-Application-Security1_utblhf.webp"
                     class="img-fluid family-image" alt="family_dinner">
             </div>
             {% if user.is_authenticated %}
             <div class="col-md-5 col-lg-7 hero-text-outer text-center">
-                <h1 class="mt-4 mb-2 hero-text">Welcome back to the Web Application Security</h1>
+                <h1 class="mt-4 mb-2 hero-text">Welcome back to Web Application Security</h1>
                 <div class="lead mt-4">
                     Add a new SecurityFeature
                     <a class="btn btn-outline-dark rounded-pill btn-lg ml-2 my-2 my-lg-0"
-                        href="{%  url 'add_securityfeature' %}">Create!</a>
+                        href="{% url 'add_securityfeature' %}">Create!</a>
                 </div>
             </div>
             {% else %}
@@ -24,7 +24,7 @@
                 <h1 class="mt-4 mb-2 hero-text">Simplify Your Everyday Security!</h1>
                 <div class="lead mt-4">
                     Get started today <a class="btn btn-outline-dark rounded-pill btn-lg ml-2 my-2 my-lg-0"
-                        href="{%  url 'account_signup' %}">Sign Up!</a>
+                        href="{% url 'account_signup' %}">Sign Up!</a>
                 </div>
             </div>
             {% endif %}
@@ -54,7 +54,7 @@
         <div class="row">
             <div class="col-12 col-md-4 mb-2">
                 <div class="feature-image mb-2">
-                    <i class="fas fa-shield-alt fa-6x"></i>
+                    <i class="fas fa-shield-alt fa-4x"></i>
                 </div>
                 <div>
                     <h3 class="feature-title">Browse</h3>
@@ -66,7 +66,7 @@
             </div>
             <div class="col-12 col-md-4 mb-2">
                 <div class="feature-image mb-2">
-                    <i class="fas fa-cloud-upload-alt fa-6x"></i>
+                    <i class="fas fa-cloud-upload-alt fa-4x"></i>
                 </div>
                 <h3 class="feature-title">Upload or Bookmark</h3>
                 <p class="feature-text">
@@ -75,7 +75,7 @@
             </div>
             <div class="col-12 col-md-4 mb-2">
                 <div class="feature-image mb-2">
-                    <i class="fas fa-tasks fa-6x"></i>
+                    <i class="fas fa-tasks fa-4x"></i>
                 </div>
                 <h3 class="feature-title">Plan</h3>
                 <p class="feature-text">

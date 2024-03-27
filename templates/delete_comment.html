@@ -3,19 +3,24 @@
 {% block content %}
 
 <div class="container">
+    <!-- Page Title -->
     <h1 class="page-title">Delete Comment</h1>
+    <!-- Horizontal Rule -->
     <hr class="home-break">
     <br>
+    <!-- Confirmation Message -->
     <p class="text-center mt-3">Are you sure you want to delete this comment?</p>
     <div class="row justify-content-center">
         <div class="col-11 col-md-6 col-lg-4 mt-3">
             <!-- Delete Comment Form -->
             <form class="text-center" method="POST">
-                {%  csrf_token  %}
+                {% csrf_token %}
                 <div>
+                    <!-- Delete Button -->
                     <button class="btn btn-danger m-2" type="submit">Delete</button>
+                    <!-- Cancel Button -->
                     <a class="btn btn-outline-dark m-2"
-                        href="{%  url 'securityfeature_detail' comment.securityfeature.slug  %}">Cancel</a>
+                        href="{% url 'securityfeature_detail' comment.securityfeature.slug %}">Cancel</a>
                 </div>
             </form>
         </div>
