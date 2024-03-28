@@ -1,5 +1,3 @@
-"""Forms for SecurityFeature, Comments and Wark Sifly Plans"""
-
 from django import forms
 from django_summernote.widgets import SummernoteWidget
 from .models import Comment, SecurityFeature, TechSecurityItem
@@ -42,8 +40,8 @@ class SecurityFeatureForm(forms.ModelForm):
 
 
 class TechSecurityForm(forms.ModelForm):
-    """ Create tech secur Form """
+    """ Create tech security Form """
     class Meta:
-        """Get tech secure model, choose fields to display"""
+        """Get tech security model, choose fields to display"""
         model = TechSecurityItem
         fields = ('day',)

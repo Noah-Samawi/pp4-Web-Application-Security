@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500&family=Open+Sans:wght@300;500&family=Playfair+Display:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 /* Global Styles */
 
 body {
     font-family: sans-serif;
     font-weight: 300;
-    background-color: rgb(245, 245, 245);
+    background-color: #e9ecef;
 }
 
 .content {
@@ -38,7 +38,7 @@ body {
 }
 
 .navbar a:hover {
-    color: #0a0a0a;
+    color: #4aa1d3;
 }
 
 .logo-image {
@@ -281,7 +281,7 @@ body {
     }
 }
 
-/* Small devices (landscape phones, less than 768px */
+/* Small devices (landscape phones, less than 768px) */
 
 @media screen and (max-width: 767.98px) {
     .landing-tagline {

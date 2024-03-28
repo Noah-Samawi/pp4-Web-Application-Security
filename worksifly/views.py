@@ -1,7 +1,3 @@
-"""Views"""
-
-"""Views"""
-
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -11,12 +7,6 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.views import generic, View
 from .models import SecurityFeature, TechSecurityItem, Comment
 from .forms import CommentForm, SecurityFeatureForm
-
-
-# class SecurityFeatureView(View):
-#     def get(self, request):
-#         # Add your logic here
-#         return HttpResponse("Security Feature View")
 
 
 class Home(generic.TemplateView):
@@ -46,11 +36,11 @@ class SecurityFeatureDetail(View):
         liked = False
         bookmarked = False
 
-        if securityfeature.likes.filter(id=self.request.user.id).exists():
-            liked = True
-
-        if securityfeature.bookmarks.filter(id=self.request.user.id).exists():
-            bookmarked = True
+        if request.user.is_authenticated:
+            if securityfeature.likes.filter(id=request.user.id).exists():
+                liked = True
+            if securityfeature.bookmarks.filter(id=request.user.id).exists():
+                bookmarked = True
 
         return render(
             request,
@@ -72,11 +62,11 @@ class SecurityFeatureDetail(View):
         liked = False
         bookmarked = False
 
-        if securityfeature.likes.filter(id=self.request.user.id).exists():
-            liked = True
-
-        if securityfeature.bookmarks.filter(id=self.request.user.id).exists():
-            bookmarked = True
+        if request.user.is_authenticated:
+            if securityfeature.likes.filter(id=request.user.id).exists():
+                liked = True
+            if securityfeature.bookmarks.filter(id=request.user.id).exists():
+                bookmarked = True
 
         comment_form = CommentForm(data=request.POST)
 
@@ -97,7 +87,7 @@ class SecurityFeatureDetail(View):
                 "comments": comments,
                 "liked": liked,
                 "bookmarked": bookmarked,
-                "comment_form": CommentForm(),
+                "comment_form": comment_form,
             },
         )
 
@@ -166,7 +156,6 @@ class UpdateSecurityFeature(
         LoginRequiredMixin, UserPassesTestMixin,
         SuccessMessageMixin, generic.UpdateView
         ):
-
     """
     This view is used to allow logged in users to edit their own securityfeatures
     """
