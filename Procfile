@@ -1,1 +1,1 @@
-web: gunicorn worksifly.wsgi
+web: gunicorn techsecurity.wsgi
