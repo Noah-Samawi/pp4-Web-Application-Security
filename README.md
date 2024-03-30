@@ -217,9 +217,35 @@ Custom Error Pages were created to give the user more information on the error a
 
 ![header](docs/readme_images/features/call_out.png)
 
-- The home page includes a call to action section which encourages the user to sign up to the site with the message "Take the stress out of everyday cooking!" and an image of a family dinner.
-- The CTA includes a sign up button which takes the user to the sign up page.
-- If a user is already signed in the message changes to 'Welcome back to The Easy Eater' and the user is encouraged to create a new securityfeature.
-- The sign up button changes to a 'Create' button which takes the user to the 'Add securityfeature' page. 
+- The home page features a call-to-action section encouraging users to sign up for the site with the message "Take the stress out of everyday security!" accompanied by an image of web application security.
+- Within the call-to-action section, there is a sign-up button that directs users to the sign-up page.
+- If a user is already signed in, the message on the call-to-action section changes to 'Welcome back to The Work Safely,' and the user is prompted to create a new security feature.
+- The sign-up button transforms into a 'Create' button, which, upon clicking, takes the user to the 'Add Security Feature' page.
 
 ![header](docs/readme_images/features/callout_logged_in.png)
+
+**What We Do Section**
+
+![header](docs/readme_images/features/what_we_do.png)
+
+- The "What We Do' section gives a brief overview of what the site has to offer and summarises the basic features with three simple steps illustrated with font-awesome icons.
+
+### User Account Pages
+
+**Sign Up**
+
+![header](docs/readme_images/features/signup.png)
+
+**Log In**
+
+![header](docs/readme_images/features/login.png)
+
+**Log Out**
+
+![header](docs/readme_images/features/logout.png)
+
+- Django allauth was installed and used to create the Sign up, Log in and Log out functionality. 
+- Success messages inform the user if they have logged in/ logged out successfully.
+
+### Recipe Detail Page
+**SecurityFeature Header Section**
