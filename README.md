@@ -391,6 +391,7 @@ To clone this repository follow the below steps:
 - [Bootstrap 4.6](https://getbootstrap.com/docs/4.6/getting-started/introduction/): CSS Framework for developing responsiveness and styling
 - [Hatchful](https://hatchful.shopify.com/): Used to generate custom logo
 - [Tables Generator](https://www.tablesgenerator.com/markdown_tables): Used to convert excel testing tables to markdown
+- [Tiny Png](https://tinypng.com/): Used to compressed Images to smaller sizes to create faster websites.
 
 ## Credits
 
