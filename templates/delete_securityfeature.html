@@ -1,40 +1,24 @@
 {% extends "base.html" %}
-{% block title %}The Optimal Solutions | All SecurityFeatures{% endblock %}
+{% block title %}The Tech Security | Delete SecurityFeature{% endblock %}
 {% block content %}
 
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h1 class="page-title">SecurityFeatures</h1>
-        </div>
-    </div>
+    <h1 class="page-title">Delete SecurityFeature</h1>
     <hr class="home-break">
     <br>
-    <!-- SecurityFeature Cards -->
-    <div class="row card-deck">
-        {% for securityfeature in securityfeature_list %}
-        <div class="col-sm-6 col-md-4 col-lg-3 px-1 d-flex align-items-stretch">
-            <div class="card card-detail securityfeature-card mb-3 shadow-sm mx-auto mx-sm-2">
-                {% if "placeholder" in securityfeature.image.url %}
-                <img src="https://res.cloudinary.com/djebesftb/image/upload/v1711544536/Web-Application-Security1_utblhf.webp"
-                    class="card-img-top" alt="placeholder image">
-                {% else %}
-                <img src="{{ securityfeature.image.url }}" alt="securityfeature image" class="card-img-top">
-                {% endif %}
-                <div class="card-body pb-1">
-                    <h2 class="card-title securityfeature-detail-title text-truncate">{{ securityfeature.title }}</h2>
-                    <p class="card-text">
-                        <span><i class="far fa-clock pr-2"></i></span>
-                        <span>Cook Time: {{ securityfeature.cook_time }}</span>
-                    </p>
-                    <a href="{% url 'securityfeature_detail' securityfeature.slug %}" class="stretched-link"
-                        aria-label="securityfeature-detail"></a>
+    <p class="text-center mt-3">Are you sure you want to delete this securityfeature?</p>
+    <div class="row justify-content-center">
+        <div class="col-11 col-md-6 col-lg-4 mt-3">
+            <!-- Delete SecurityFeature Form -->
+            <form class="text-center" method="POST">
+                {%  csrf_token  %}
+                <div>
+                    <button class="btn btn-danger m-2" type="submit">Delete</button>
+                    <a class="btn btn-outline-dark m-2" href="{%  url 'securityfeature_detail' securityfeature.slug  %}">Cancel</a>
                 </div>
-            </div>
+            </form>
         </div>
-        {% endfor %}
     </div>
 </div>
-{% include "paginator.html" %}
 
 {% endblock %}

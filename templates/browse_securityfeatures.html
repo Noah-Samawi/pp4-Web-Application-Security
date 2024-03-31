@@ -12,11 +12,11 @@
     <br>
     <!-- SecurityFeature Cards -->
     <div class="row card-deck">
-        {% for securityfeature in securityfeature_list %}
+        {% for securityfeature in securityfeature_list  %}
         <div class="col-sm-6 col-md-4 col-lg-3 px-1 d-flex align-items-stretch">
             <div class="card card-detail securityfeature-card mb-3 shadow-sm mx-auto mx-sm-2">
                 {% if "placeholder" in securityfeature.image.url %}
-                <img src="https://res.cloudinary.com/djebesftb/image/upload/v1711776504/rendom_g3svrd.jpg"
+                <img src="https://res.cloudinary.com/aliokeeffe/image/upload/v1656016833/placeholder_image_prqssg.jpg"
                     class="card-img-top" alt="placeholder image">
                 {% else %}
                 <img src="{{ securityfeature.image.url }}" alt="securityfeature image" class="card-img-top">
@@ -25,12 +25,10 @@
                     <h2 class="card-title securityfeature-detail-title text-truncate">{{ securityfeature.title }}</h2>
                     <p class="card-text">
                         <span><i class="far fa-clock pr-2"></i></span>
-                        <span>Search Time: {{ securityfeature.search_time }}</span>
+                        <span>Cook Time: {{ securityfeature.search_time }}</span>
                     </p>
                     <a href="{% url 'securityfeature_detail' securityfeature.slug %}" class="stretched-link"
                         aria-label="securityfeature-detail"></a>
-                    <i class="far fa-heart fa-xl" aria-hidden="true"></i>
-                    1
                 </div>
             </div>
         </div>

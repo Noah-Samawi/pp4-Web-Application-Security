@@ -1,54 +1,43 @@
 {% extends 'base.html' %}
-{% block title %}The Optimal Solutions | {{ securityfeature.title }}{% endblock %}
+{% block title %}The Optimal Solutions| {{ securityfeature.title }}{% endblock %}
 {% block content %}
 {% load crispy_forms_tags %}
 
 <div class="container p-0">
-    <!-- Security Feature Detail Card -->
     <div class="container pt-3">
         <div class="card mb-3 securityfeature-detail-card">
             <div class="row no-gutters">
-                <!-- Security Feature Image -->
                 <div class="col-12 col-md-4">
                     {% if "placeholder" in securityfeature.image.url %}
-                    <img src="https://res.cloudinary.com/djebesftb/image/upload/v1711602665/test_1_ytpezx.jpg"
+                    <img src="https://res.cloudinary.com/djebesftb/image/upload/v1711776946/security_be3zeq.jpg"
                         class="securityfeature-detail-img" alt="placeholder image">
                     {% else %}
-                    <img src="{{ securityfeature.image.url }}" alt="securityfeature image" class="securityfeature-detail-img">
+                    <img src=" {{ securityfeature.image.url }}" alt="securityfeature image" class="securityfeature-detail-img">
                     {% endif %}
                 </div>
-                <!-- Security Feature Details -->
                 <div class="col-12 col-md-8">
                     <div class="card-body securityfeature-detail-outer py-2">
                         <div>
-                            <!-- Security Feature Title -->
                             <h1 class="card-title page-title securityfeature-title text-left">{{ securityfeature.title }}</h1>
                         </div>
-                        <!-- Security Feature Metadata -->
                         <p class="card-text">Author: {{ securityfeature.author }}</p>
                         <div class="mb-5">
                             <p>
-                                <span><i class="far fa-clock pr-2"> </i></span>
-                                <span>Setup Time: {{ securityfeature.setup_time }}</span>
-                            </p>
-                            <p>
                                 <span><i class="far fa-clock pr-2"></i></span>
-                                <span>Search Time: {{ securityfeature.search_time }}</span>
+                                <span>Cook Time: {{ securityfeature.search_time }}</span>
                             </p>
                         </div>
-                        <!-- Security Feature Action Buttons -->
+                        <!-- securityfeature action buttons -->
                         <div class="action-buttons-outer d-block">
                             {% if user.is_authenticated %}
-                            <!-- Button to Add to Tech Security -->
                             <button type="button" class="btn btn btn-outline-dark mp-button rounded-pill mr-2"
                                 data-toggle="modal" data-target="#techsecurityModal">
                                 <span><i class="fas fa-calendar-plus pr-1"></i></span>
                                 Add to Tech Security
                             </button>
-                            <!-- Tech Security Modal -->
+                            <!--Tech Security Modal -->
                             <div class="modal fade" id="techsecurityModal" tabindex="-1"
                                 aria-labelledby="techsecurityModalLabel" aria-hidden="true">
-                                <!-- Modal Content -->
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -72,23 +61,29 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- End of Tech Security Modal -->
                             {% endif %}
-                            <!-- Form to Like/Bookmark/Delete -->
+                            <!--End of Tech Security Modal -->
+                            {% if user.is_authenticated %}
                             <form class="d-inline" action="{% url 'bookmark_securityfeature' securityfeature.slug %}" method="POST">
-                                <!-- Bookmark Button -->
                                 {% csrf_token %}
+                                {% if bookmarked  %}
+                                <button class="action-btn btn btn-info" type="submit" name="bookmark_id"
+                                    value="{{securityfeature.slug}}" aria-label="bookmark-outline">
+                                    <i class="fas fa-bookmark"></i></button>
+                                {% else %}
+                                <button class="action-btn btn btn-info" type="submit" name="bookmark_id"
+                                    value="{{securityfeature.slug}}" aria-label="bookmark-solid"><i
+                                        class="far fa-bookmark"></i></button>
+                                {% endif %}
                             </form>
-                            <!-- Edit/Delete Buttons for Author -->
+                            {% endif %}
                             {% if user.is_authenticated and securityfeature.author == user %}
-                            <!-- Edit Button -->
                             <span>
                                 <a class="action-btn btn btn-info" href="{% url 'update_securityfeature' securityfeature.slug %}"
                                     aria-label="edit-securityfeature">
                                     <i class="fas fa-edit"></i>
                                 </a>
                             </span>
-                            <!-- Delete Button -->
                             <span>
                                 <a class="action-btn btn btn-info" href="{% url 'delete_securityfeature' securityfeature.slug %}"
                                     aria-label="delete-securityfeature">
@@ -102,33 +97,45 @@
             </div>
         </div>
     </div>
-    <!-- Description -->
     <div class="container text-center">
-        <!-- Description Card -->
-        <div class="card mb-3 securityfeature-detail-card">
-            <h5 class="card-header securityfeature-detail-header">
-                Description
-            </h5>
-            <div class="card-body">
-                <p class="card-text">{{ securityfeature.description | safe }}</p>
+        <div class="row">
+            <div class="col">
+                <div class="card mb-3 securityfeature-detail-card">
+                    <h5 class="card-header securityfeature-detail-header">
+                        Description
+                    </h5>
+                    <div class="card-body">
+                        <p class="card-text">{{ securityfeature.description | safe }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!-- Method -->
     <div class="container">
-        <!-- Method Card -->
-        <div class="card mb-3 securityfeature-detail-card">
-            <h5 class="card-header securityfeature-detail-header">Method</h5>
-            <div class="card-body">
-                <div class="card-text">{{ securityfeature.method | safe }}</div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-3 securityfeature-detail-card">
+                    <h5 class="card-header securityfeature-detail-header">
+                        Ingredients
+                    </h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ securityfeature.ingredients | safe }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-3 securityfeature-detail-card">
+                    <h5 class="card-header securityfeature-detail-header">Method</h5>
+                    <div class="card-body">
+                        <div class="card-text">{{ securityfeature.method | safe }}</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 <!-- Comments section -->
 {% if comments %}
-<!-- Comments Container -->
 <div class="container">
     <div class="row">
         <div class="col">
@@ -163,48 +170,6 @@
 {% endif %}
 
 {% if user.is_authenticated %}
-<!-- Like/Bookmark -->
-<div class="container">
-    {% if user.is_authenticated %}
-        <form action="{% url 'securityfeature_like' securityfeature.slug %}" method="POST">
-            {% csrf_token %}
-            {% if liked %}
-            <span>
-                <button class="btn-like" type="submit" name="securityfeature_id" value="{{securityfeature.slug}}">
-                    <i class="fa-solid fa-heart fa-xl" style="color: #db0000;"></i>
-                </button>
-                {{ securityfeature.number_of_likes }}
-            </span>
-            {% else %}
-            <span>
-                <button class="btn-like" type="submit" name="securityfeature_id" value="{{securityfeature.slug}}">
-                    <i class="far fa-heart fa-xl"></i>
-                </button>
-                {{ securityfeature.number_of_likes }}
-            </span>
-            {% endif %}
-        </form>
-        <form action="{% url 'bookmark_securityfeature' securityfeature.slug %}" method="POST">
-            {% csrf_token %}
-            {% if bookmarked %}
-            <span class="bookmark-icon">
-                <button class="btn-like" type="submit" name="securityfeature_id" value="{{securityfeature.slug}}">
-                    <i class="fa-solid fa-bookmark fa-xl"></i>
-                </button>
-            </span>
-            {% else %}
-            <span class="bookmark-icon">
-                <button class="btn-like" type="submit" name="securityfeature_id" value="{{securityfeature.slug}}">
-                    <span style="color: blue;"><i class="fa-regular fa-bookmark fa-xl"></i></span> 
-                </button>
-            </span>
-            
-            {% endif %}
-        </form>
-    {% else %}
-        <span><i class="far fa-heart fa-xl"></i> {{ securityfeature.number_of_likes }}</span>
-    {% endif %}
-</div>
 <!-- Create comment -->
 <div class="container">
     <div class="row">
@@ -223,4 +188,5 @@
     </div>
 </div>
 {% endif %}
+
 {% endblock content %}

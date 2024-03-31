@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}The Optimal Solutions | My Bookmarks{% endblock %}
+{% block title %}The Work Safely | My Bookmarks{% endblock %}
 {% block content %}
 
 {% if user.is_authenticated %}
@@ -11,29 +11,23 @@
     </div>
     <hr class="home-break">
     <br>
-    <!-- Security Feature Cards -->
+    <!-- SecurityFeature Card -->
     <div class="row card-deck">
         {% for securityfeature in securityfeature_list %}
         <div class="col-sm-6 col-md-4 col-lg-3 px-1 d-flex align-items-stretch">
             <div class="card card-detail securityfeature-card mb-3 shadow-sm mx-auto mx-sm-2">
                 {% if "placeholder" in securityfeature.image.url %}
                     <img class="card-img-top" alt="placeholder image"
-                        src="https://res.cloudinary.com/djebesftb/image/upload/v1711544536/Web-Application-Security1_utblhf.webp">
+                        src="https://res.cloudinary.com/aliokeeffe/image/upload/v1656016833/placeholder_image_prqssg.jpg">
                 {% else %}
-                    <img src="{{ securityfeature.image.url }}" alt="securityfeature image" class="card-img-top">
+                    <img src=" {{ securityfeature.image.url }}" alt="securityfeature image" class="card-img-top">
                 {% endif %}
                 <div class="card-body pb-1">
                     <h2 class="card-title securityfeature-detail-title text-truncate">{{ securityfeature.title }}</h2>
                     <p class="card-text">
                         <span><i class="far fa-clock pr-2"></i></span>
-                        <span>Resolve Time: {{ securityfeature.resolve_time }}</span>
+                        <span>Cook Time: {{ securityfeature.search_time }}</span>
                     </p>
-                    <!-- Check if securityfeature is bookmarked by the user -->
-                    {% if securityfeature in user.bookmarks.all %}
-                        <p>Bookmarked</p>
-                    {% else %}
-                        <p>Not Bookmarked</p>
-                    {% endif %}
                     <a href="{% url 'securityfeature_detail' securityfeature.slug %}" class="stretched-link"
                         aria-label="securityfeature-detail"></a>
                 </div>
