@@ -30,6 +30,7 @@ class SecurityFeatureForm(forms.ModelForm):
         fields = [
             'title',
             'description',
+            'search_time',
             'method',
             'image',
             'status',
