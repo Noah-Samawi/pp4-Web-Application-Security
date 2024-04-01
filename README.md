@@ -33,6 +33,8 @@ The live link can be found here - [The Web Application Security](https://pp4-web
     + [SecurityFeature Detail Page](#securityfeature-detail-page)
     + [Add SecurityFeature Form](#add-securityfeature-form)
     + [Update SecurityFeature Form](#update-securityfeature-form)
+    + [Delete SecurityFeature](#delete-securityfeature)
+    + [My Tech Security](#my-tech-security)
     + [My SecurityFeatures Page](#my-securityfeatures-page)
     + [My Bookmarks Page](#my-bookmarks-page)
     + [Future Features](#future-features)
@@ -47,7 +49,7 @@ The live link can be found here - [The Web Application Security](https://pp4-web
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 ## User Experience (UX)
 
-Visitors to our Web Application Security platform are typically adults who are passionate about web security and eager to explore the latest security features. Whether you're a seasoned professional or someone just beginning to delve into the world of cybersecurity, our platform offers a wealth of resources and tools to help you stay informed and protected. Join our community of like-minded individuals and embark on a journey to strengthen your web security knowledge while discovering innovative security solutions.
+Visitors to our Web Application Security platform are typically passionate about web security and eager to explore the latest security features. Whether you're a seasoned professional or just beginning to delve into the world of cybersecurity, our platform offers a wealth of resources and tools to help you stay informed and protected. Join our community of like-minded individuals and embark on a journey to strengthen your web security knowledge while discovering innovative security solutions.
 
 ### User Stories
 
@@ -55,12 +57,13 @@ Visitors to our Web Application Security platform are typically adults who are p
 - As a site user, I can register an account to add, edit, or delete my security features, comment on, and bookmark other people's security features, and contribute to web application security.
 - As a site user, I can log in or log out of my account to ensure the security of my account.
 - As a site user, I can view my login status to determine whether I'm currently logged in or logged out.
+- As a site user, I can reset my password if I forget it.
 
 #### EPIC | User Navigation
 - As a site user, I want to immediately understand the purpose of the site so that I can determine if it meets my needs.
 - As a site user, I want to navigate around the site intuitively, enabling me to find content and understand my location within the site.
 - As a site user, I want to view a paginated list of security features, allowing me to select a security feature to view.
-- As a site user, I want to be able to click on a security feature to read its full details, including required ingredients, and to view comments and like left by other users.
+- As a site user, I want to be able to click on a security feature to read its full details, including required ingredients, and to view comments left by other users.
 
 #### EPIC | SecurityFeature Management
 - As a site user, I want to input my favorite security features into the app through an easy-to-use interface so that I can share them with other users.
@@ -70,11 +73,11 @@ Visitors to our Web Application Security platform are typically adults who are p
 
 #### EPIC | SecurityFeature Interaction
 - As a site user, I want to save other users' security features to my bookmarks so that I can easily find them at a later date.
-- As a site user, I want to be able to comment and like on other people's security features so that I can provide my feedback.
-- As a site user, I want to edit and delete comments and like that I have created so that I can easily make changes if I have made a mistake.
+- As a site user, I want to be able to comment on other people's security features so that I can provide my feedback.
+- As a site user, I want to edit and delete comments that I have created so that I can easily make changes if I have made a mistake.
 
 #### EPIC | Site Administration
-- As a Site Administrator, I can create, read, update and delete securityfeatures, comments, like and tech securtiy items so that I can manage the app content.
+- As a Site Administrator, I can create, read, update and delete securityfeatures, comments, and tech securtiy items so that I can manage the app content.
 
 ### Design
 
@@ -90,7 +93,7 @@ The colour scheme of the site is Anti Flash White, Night, Gunmetal and Gelesial 
 Night was taken to establish a good contrast between background colours and text at all times to ensure maximum user accessibility. 
 
 #### Imagery
-There is tow static images on the site depicting a family dinner on the home page. The rest of the imagery will be uploaded by users for their individual securityfeatures. 
+There are two static images on the site depicting a person walking across a computer to explain Web Application Security on the home page. The rest of the imagery will be uploaded by users for their individual security features.
 
 #### Fonts
 The main font used for the body of the website is sans-serif, while Playfair Display is used for the main headings on the home page. These fonts have been imported via Google Fonts. In the event that the main font fails to import correctly, Sans Serif serves as the backup font.
@@ -161,8 +164,7 @@ Custom Error Pages were created to give the user more information on the error a
 ![header](docs/readme_images/features/nav_loggedout.png)
 
 **Logo**
-- A customised logo was created using Hatchful by Shopify which is a free logo generator.
-- This logo is positioned in the top left of the navigation bar. The logo is linked to the home page for ease of navigation for the user.
+- A customized logo was created using HTML and CSS. The logo is linked to the home page for ease of navigation for the user.
 
 **Navigation Bar**
 
@@ -227,7 +229,7 @@ Custom Error Pages were created to give the user more information on the error a
 
 - This page displays all securityfeatures with a status of published with the most recent securityfeatures displayed first.
 - The securityfeature cards are paginated after every 8 securityfeatures.
-- Each card displays the securityfeature's image, Title, like and Search Time.
+- Each card displays the securityfeature's image, Title and Search Time.
 - Clicking anywhere inside the securityfeature card will take you directly to that securityfeature's detailed page.
 
 ### SecurityFeatures Detail Page
@@ -235,7 +237,7 @@ Custom Error Pages were created to give the user more information on the error a
 
 ![header](docs/readme_images/features/securityfeatures_header.png)
 
-The securityfeature header section at the top of the page shows the securityfeature image, title, author, prep time and cook time.
+The securityfeature header section at the top of the page shows the securityfeature image, title, author, prep time and searsh time.
 
 **SecurityFeature Details Section**
 
@@ -247,11 +249,16 @@ The securityfeature header section at the top of the page shows the securityfeat
 
 ![header](docs/readme_images/features/comment.png)
 
-![header](docs/readme_images/features/add_comment.png)
+- The comments section lists all comments left by users for that particular recipe.
+- Comments can only be left if a user is logged in. Any comments left by the user that is currently signed in can be updated or deleted using the buttons in the comment header.
 
-- The comments section lists all comments left by users for that particular securityfeature.
-- Comments can only be left if a user is logged in.
+![header](docs/readme_images/features/edit_comment.png)
 
+omment.png)![header](docs/readme_images/features/delete_c
+
+- The user receives a success message notifying them that the comment has been successfully added, updated or deleted.
+- If a user tries to edit or delete a comment (by changing the url) without being signed in they are redirected to the log in page.
+- If a user tries to edit/delete another user's comment (by changing the url) they receive a custom 403 error.
 ### Add SecurityFeature Form
 
 ![header](docs/readme_images/features/add_securityfeature.png)
@@ -273,6 +280,24 @@ The securityfeature header section at the top of the page shows the securityfeat
 - If a user tries to update a securityfeature (by changing the url) without being signed in they are redirected to the log in page.
 - If a user tries to update another user's securityfeature (by changing the url) they receive a custom 403 error.
 - The user will receive a success message notifying them that the securityfeature has been successfully updated.
+
+### Delete SecurityFeature
+
+ ![header](docs/readme_images/features/delete_securityfeature.png)
+
+- If the user is logged in and is the author or the recsecurityfeatureipe they can choose to delete the securityfeature by clicking the delete button on the securityfeature detail page.
+- The user is asked to confirm if they wish to delete the securityfeature or cancel.
+- The user will receive a success message notifying them that the securityfeature has been successfully deleted.
+
+### My Tech Security
+
+![header](docs/readme_images/features/techsecurity_page.png)
+
+- This page displays the logged in user's tech security for the week.
+- The tech security cards are ordered Monday to Sunday.
+- If a user has added a securityfeauter to their tech security for a particular day, the card will display the securityfeauter image and title. Clicking anywhere inside the tech security card will take you directly to that securityfeauter's detailed page.
+- If there is no tech security for a particular day, that card will display a plus icon and the text "Add SecurityFeauter". Clicking anywhere inside the tech security card will take you to the browse securityfeauter page.
+- If a user tries to access this page (by changing the url) without being signed in they are redirected to the log in page.
 
 ### My SecurityFeatures Page
 
