@@ -13,26 +13,24 @@ class SecurityFeature(models.Model):
     title = models.CharField(max_length=50, unique=True)
     slug = AutoSlugField(populate_from='title', unique=True)
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="security_features")
+        User, on_delete=models.CASCADE, related_name="securityfeatures")
     created_on = models.DateTimeField(auto_now=True)
     updated_on = models.DateTimeField(auto_now=True)
     search_time = models.CharField(max_length=10, default=0)
     description = models.TextField()
-    ingredients = models.TextField(validators=[textfield_not_empty])
     method = models.TextField(validators=[textfield_not_empty])
     image = CloudinaryField('image', default='placeholder')
     status = models.IntegerField(choices=STATUS, default=1)
     bookmarks = models.ManyToManyField(
         User, related_name='bookmark', default=None, blank=True)
-    likes = models.ManyToManyField(User, related_name='liked_security_features', blank=True)    
 
     class Meta:
-        """To display the security_features by created_on in descending order"""
+        """To display the securityfeatures by created_on in descending order"""
         ordering = ['-created_on']
 
     def get_absolute_url(self):
-        """Get url after user adds/edits security_feature"""
-        return reverse('security_feature_detail', kwargs={'slug': self.slug})
+        """Get url after user adds/edits securityfeature"""
+        return reverse('securityfeature_detail', kwargs={'slug': self.slug})
 
     def __str__(self):
         return f"{self.title}"
@@ -51,9 +49,9 @@ class TechSecurityItem(models.Model):
     ]
 
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="tech_security_items")
-    security_feature = models.ForeignKey(
-        SecurityFeature, on_delete=models.CASCADE, related_name="tech_security_items")
+        User, on_delete=models.CASCADE, related_name="tech_security")
+    securityfeature = models.ForeignKey(
+        SecurityFeature, on_delete=models.CASCADE, related_name="tech_security_item")
     day = models.IntegerField(choices=DAY_CHOICES, default='0')
 
     class Meta:
@@ -66,7 +64,7 @@ class TechSecurityItem(models.Model):
 
 class Comment(models.Model):
     """Model for Comment"""
-    security_feature = models.ForeignKey(
+    securityfeature = models.ForeignKey(
         SecurityFeature, on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=80)
     email = models.EmailField()

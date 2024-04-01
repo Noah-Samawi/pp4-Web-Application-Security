@@ -1,4 +1,3 @@
-{%endblock%}
 {% extends "base.html" %}
 {% block title %}The Optimal Solutions | Update SecurityFeature{% endblock %}
 {% block content %}
@@ -10,19 +9,19 @@
     <hr class="home-break">
     <br>
     <div class="row justify-content-center ">
-        {% if user.is_authenticated and securityfeature.author == user  %}
-        <!-- Checks the user is signed in and the securityfeature they're trying to access is owned by them -->
+        {% if user.is_authenticated and securityfeature.author == user %}
+        <!-- Checks if the user is signed in and if the security feature belongs to them -->
         {% load cloudinary %}
         <div class="col-11 col-md-8 col-lg-6 mt-3 add-securityfeature-outer">
             <form method="post" class="add-securityfeature mb-5" enctype="multipart/form-data">
                 {{ form | crispy }}
                 {% csrf_token %}
                 <button type="submit" class="btn btn-outline-dark">Update</button>
-                <a class="btn btn-outline-dark m-2" href="{%  url 'securityfeature_detail' securityfeature.slug  %}">Cancel</a>
+                <a class="btn btn-outline-dark m-2" href="{% url 'securityfeature_detail' securityfeature.slug %}">Cancel</a>
             </form>
         </div>
         {% endif %}
     </div>
 </div>
 
-{%endblock%}
+{% endblock %}

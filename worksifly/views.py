@@ -119,26 +119,6 @@ class SecurityFeatureDetail(View):
         return render(request, "securityfeature_detail.html", context)
 
 
-class SecurityFeatureLike(View):
-    """Add a like to a securityfeature"""
-
-    def post(self, request, slug):
-        """
-        Find securityfeature and post like (user-id) to model
-        See Credit 9. in README
-        """
-        securityfeature = get_object_or_404(SecurityFeature, slug=slug)
-        origin = request.META.get("HTTP_REFERER")
-
-        if securityfeature.likes.filter(id=request.user.id).exists():
-            securityfeature.likes.remove(request.user)
-            messages.success(request, 'Like successfully removed')
-        else:
-            securityfeature.likes.add(request.user)
-            messages.success(request, 'Like successfully added')
-        return redirect(origin)      
-
-
 class AddSecurityFeature(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     """This view is used to allow logged in users to create a securityfeature"""
     form_class = SecurityFeatureForm

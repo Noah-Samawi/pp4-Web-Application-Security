@@ -34,5 +34,4 @@ urlpatterns = [
         'comments/<int:pk>/delete/',
         views.DeleteComment.as_view(), name='delete_comment'
         ),
-    path('like/<slug:slug>/', views.SecurityFeatureLike.as_view(), name='securityfeature_like'),
 ]

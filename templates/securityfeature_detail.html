@@ -1,20 +1,23 @@
 {% extends 'base.html' %}
-{% block title %}The Optimal Solutions| {{ securityfeature.title }}{% endblock %}
+{% block title %}The Optimal Solutions | {{ securityfeature.title }}{% endblock %}
 {% block content %}
 {% load crispy_forms_tags %}
 
 <div class="container p-0">
     <div class="container pt-3">
+        <!-- Security Feature Details -->
         <div class="card mb-3 securityfeature-detail-card">
+            <!-- Security Feature Image -->
             <div class="row no-gutters">
                 <div class="col-12 col-md-4">
                     {% if "placeholder" in securityfeature.image.url %}
                     <img src="https://res.cloudinary.com/djebesftb/image/upload/v1711776946/security_be3zeq.jpg"
                         class="securityfeature-detail-img" alt="placeholder image">
                     {% else %}
-                    <img src=" {{ securityfeature.image.url }}" alt="securityfeature image" class="securityfeature-detail-img">
+                    <img src="{{ securityfeature.image.url }}" alt="securityfeature image" class="securityfeature-detail-img">
                     {% endif %}
                 </div>
+                <!-- Security Feature Details -->
                 <div class="col-12 col-md-8">
                     <div class="card-body securityfeature-detail-outer py-2">
                         <div>
@@ -27,17 +30,19 @@
                                 <span>Cook Time: {{ securityfeature.search_time }}</span>
                             </p>
                         </div>
-                        <!-- securityfeature action buttons -->
+                        <!-- Action Buttons -->
                         <div class="action-buttons-outer d-block">
                             {% if user.is_authenticated %}
+                            <!-- Add to Tech Security Button -->
                             <button type="button" class="btn btn btn-outline-dark mp-button rounded-pill mr-2"
                                 data-toggle="modal" data-target="#techsecurityModal">
                                 <span><i class="fas fa-calendar-plus pr-1"></i></span>
                                 Add to Tech Security
                             </button>
-                            <!--Tech Security Modal -->
+                            <!-- Tech Security Modal -->
                             <div class="modal fade" id="techsecurityModal" tabindex="-1"
                                 aria-labelledby="techsecurityModalLabel" aria-hidden="true">
+                                <!-- Modal Content -->
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -46,6 +51,7 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
+                                        <!-- Tech Security Form -->
                                         <form method="post" class="add-securityfeature">
                                             <div class="modal-body">
                                                 {{ techsecurity_form | crispy }}
@@ -62,21 +68,21 @@
                                 </div>
                             </div>
                             {% endif %}
-                            <!--End of Tech Security Modal -->
+                            <!-- Bookmark Button -->
                             {% if user.is_authenticated %}
                             <form class="d-inline" action="{% url 'bookmark_securityfeature' securityfeature.slug %}" method="POST">
                                 {% csrf_token %}
-                                {% if bookmarked  %}
                                 <button class="action-btn btn btn-info" type="submit" name="bookmark_id"
-                                    value="{{securityfeature.slug}}" aria-label="bookmark-outline">
-                                    <i class="fas fa-bookmark"></i></button>
-                                {% else %}
-                                <button class="action-btn btn btn-info" type="submit" name="bookmark_id"
-                                    value="{{securityfeature.slug}}" aria-label="bookmark-solid"><i
-                                        class="far fa-bookmark"></i></button>
-                                {% endif %}
+                                    value="{{ securityfeature.slug }}" aria-label="bookmark-outline">
+                                    {% if bookmarked %}
+                                    <i class="fas fa-bookmark"></i>
+                                    {% else %}
+                                    <i class="far fa-bookmark"></i>
+                                    {% endif %}
+                                </button>
                             </form>
                             {% endif %}
+                            <!-- Edit and Delete Buttons -->
                             {% if user.is_authenticated and securityfeature.author == user %}
                             <span>
                                 <a class="action-btn btn btn-info" href="{% url 'update_securityfeature' securityfeature.slug %}"
@@ -97,33 +103,20 @@
             </div>
         </div>
     </div>
+    <!-- Description and Method -->
     <div class="container text-center">
         <div class="row">
+            <!-- Description -->
             <div class="col">
                 <div class="card mb-3 securityfeature-detail-card">
-                    <h5 class="card-header securityfeature-detail-header">
-                        Description
-                    </h5>
+                    <h5 class="card-header securityfeature-detail-header">Description</h5>
                     <div class="card-body">
                         <p class="card-text">{{ securityfeature.description | safe }}</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card mb-3 securityfeature-detail-card">
-                    <h5 class="card-header securityfeature-detail-header">
-                        Ingredients
-                    </h5>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{ securityfeature.ingredients | safe }}</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-6">
+            <!-- Method -->
+            <div class="col">
                 <div class="card mb-3 securityfeature-detail-card">
                     <h5 class="card-header securityfeature-detail-header">Method</h5>
                     <div class="card-body">
@@ -134,7 +127,8 @@
         </div>
     </div>
 </div>
-<!-- Comments section -->
+
+<!-- Comments Section -->
 {% if comments %}
 <div class="container">
     <div class="row">
