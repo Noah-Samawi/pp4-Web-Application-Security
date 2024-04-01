@@ -4,7 +4,7 @@ Welcome to the Web Application Security project repository! This project aims to
 
 The site acts as a repository for SecurityFeature whereby users can store their own SecurityFeature and also browse other users' SecurityFeature and bookmark them for a later date. Users can get organised for the week ahead by adding SecurityFeature to their tech security for each time. 
 
-The live link can be found here - [The Web Application Security](https://pp4-web-application-security.herokuapp.com/)
+The live link can be found here - [The Web Application Security](https://pp4-web-application-security-aaef0fe6b0f0.herokuapp.com/browsesecurityfeatures/)
 
 ## Table of Contents
 
@@ -249,7 +249,7 @@ The securityfeature header section at the top of the page shows the securityfeat
 
 ![header](docs/readme_images/features/comment.png)
 
-- The comments section lists all comments left by users for that particular recipe.
+- The comments section lists all comments left by users for that particular securityfeature.
 - Comments can only be left if a user is logged in. Any comments left by the user that is currently signed in can be updated or deleted using the buttons in the comment header.
 
 ![header](docs/readme_images/features/edit_comment.png)
@@ -305,7 +305,7 @@ omment.png)![header](docs/readme_images/features/delete_c
 
 - This page displays all securityfeatures which the logged in user has created.
 - The securityfeature cards are paginated after every 8 securityfeatures.
-- Each card displays the securityfeature's image, Title and Cook Time.
+- Each card displays the securityfeature's image, Title and Search Time.
 - If the securityfeature is not yet published the word 'DRAFT' will appear in red next to the securityfeature title.
 - Clicking anywhere inside the securityfeatures card will take you directly to that securityfeature's detailed page.
 - If a user tries to access this page (by changing the url) without being signed in they are redirected to the log in page.
