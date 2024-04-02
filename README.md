@@ -8,7 +8,7 @@ The live link can be found here - [The Web Application Security](https://pp4-web
 
 ## Table of Contents
 
-- [The Easy Eater](#the-easy-eater)
+- [The Tech Security](#the-tech-security)
   * [User Experience (UX)](#user-experience-ux)
     + [User Stories](#user-stories)
     + [Design](#design)
@@ -23,7 +23,7 @@ The live link can be found here - [The Web Application Security](https://pp4-web
     + [User Authentication](#user-authentication)
     + [Form Validation](#form-validation)
     + [Database Security](#database-security)
-    + [Custom error pages:](#custom-error-pages-)
+    + [Custom Error Pages](#custom-error-pages)
   * [Features](#features)
     + [Header](#header)
     + [Footer](#footer)
@@ -148,14 +148,14 @@ The database url and secret key are stored in the env.py file to prevent unwante
 
 Cross-Site Request Forgery (CSRF) tokens were used on all forms throughout this site.
 
-### Custom error pages:
+### Custom error pages
 
 Custom Error Pages were created to give the user more information on the error and to provide them with buttons to guide them back to the site.
 
-- 400 Bad Request - The Easy Eater is unable to handle this request.
+- 400 Bad Request - The Tech Security is unable to handle this request.
 - 403 Page Forbidden - Looks like you're trying to access forbidden content. Please log out and sign in to the correct account.
 - 404 Page Not Found - The page you're looking for doesn't exist.
-- 500 Server Error - The Easy Eater is currently unable to handle this request
+- 500 Server Error - The Tech Security is currently unable to handle this request
 
 ## Features
 
@@ -370,14 +370,14 @@ Add the following Config Vars in Heroku:
 The site is now live and operational.
 
 ## Forking this repository
-- Locate the repository at this link [The Web-Application-Security](https://github.com/Noah-Samawi/pp4-Web-Application-Security.git).
+- Locate the repository at this link [The Tech Security](https://github.com/Noah-Samawi/pp4-Web-Application-Security.git).
 - At the top of the repository, on the right side of the page, select "Fork" from the buttons available.
 - A copy of the repository is now created.
 
 ## Cloning this repository
 To clone this repository follow the below steps:
 
-1. Locate the repository at this link [The Easy Eater](https://github.com/Noah-Samawi/pp4-Web-Application-Security.git). 
+1. Locate the repository at this link [The Tech Security](https://github.com/Noah-Samawi/pp4-Web-Application-Security.git).
 2. Under **'Code'**, see the different cloning options, HTTPS, SSH, and GitHub CLI. Click the prefered cloning option, and then copy the link provided.
 3. Open **Terminal**.
 4. In Terminal, change the current working directory to the desired location of the cloned directory.
@@ -402,7 +402,7 @@ To clone this repository follow the below steps:
 - [Font Awesome](https://fontawesome.com/) - Used for icons in information bar.
 - [GitHub](https://github.com/) - Used for version control and agile tool.
 - [Google Fonts](https://fonts.google.com/) - Used to import and alter fonts on the page.
-- [W3C](https://www.w3.org/) - Used for HTML & CSS Validation.
+- [W3C](https://validator.w3.org/) - Used for HTML & CSS Validation.
 - [PEP8 Online](http://pep8online.com/) - used to validate all the Python code
 - [Jshint](https://jshint.com/) - used to validate javascript
 - [Coolors](https://coolors.co/) - Used to create colour palette.
