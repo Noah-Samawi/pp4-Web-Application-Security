@@ -31,12 +31,16 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-noahsamawi-pp4webapplic-lshu1i341hx.ws-eu114.gitpod.io'
+]
 
-ALLOWED_HOSTS = ['pp4-web-application-security-aaef0fe6b0f0.herokuapp.com',  '8000-noahsamawi-pp4webapplic-ffcocheu1k8.ws-eu110.gitpod.io', 'localhost']
+
+ALLOWED_HOSTS = ['pp4-web-application-security-aaef0fe6b0f0.herokuapp.com',  '8000-noahsamawi-pp4webapplic-lshu1i341hx.ws-eu114.gitpod.io', 'localhost']
 
 # Application definition
 

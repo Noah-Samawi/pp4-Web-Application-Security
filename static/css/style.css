@@ -209,7 +209,8 @@ body {
 
 /* All Auth Templates */
 .signup,
-.login {
+.login,
+.password_reset {
     text-align: center;
     padding: 20px 0;
     border-radius: 2%;
@@ -217,7 +218,8 @@ body {
 }
 
 .signup input,
-.login input {
+.login input,
+.password_reset input {
     width: 90%;
     border: 1px solid #D8B646;
     padding: 5px;
@@ -225,20 +227,51 @@ body {
 }
 
 .signup label,
-.login label {
+.login label,
+.password_reset label {
     display: block;
     text-align: center;
     color: #4aa1d3;
     font-weight: bold;
 }
 
-.login label[for="id_remember"] {
+.login label[for="id_remember"],
+.password_reset label[for="id_remember"] {
     display: inline;
 }
 
-.login #id_remember {
+.login #id_remember,
+.password_reset #id_remember {
     width: 20px;
     display: inline;
+}
+
+.container.password-reset-page,
+.container.login-page {
+    background-color: #e9ecef;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.page-title {
+    color: #0a0a0a;
+    font-weight: 300;
+    text-align: center;
+}
+
+.home-break {
+    border-top: 1px solid #d8b646;
+    margin: auto !important;
+}
+
+.btn-outline-dark {
+    color: #4aa1d3;
+    border-color: #4aa1d3;
+}
+
+.btn-outline-dark:hover {
+    background-color: #4aa1d3;
+    color: white;
 }
 
 /* Footer */

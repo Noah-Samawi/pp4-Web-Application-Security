@@ -6,8 +6,9 @@ The site acts as a repository for SecurityFeature whereby users can store their 
 
 The live link can be found here - [The Web Application Security](https://pp4-web-application-security-aaef0fe6b0f0.herokuapp.com/browsesecurityfeatures/)
 
-## Table of Contents
+![Mockup image](/docs/mockup!.png) <br>
 
+## Table of Contents
 - [The Tech Security](#the-tech-security)
   * [User Experience (UX)](#user-experience-ux)
     + [User Stories](#user-stories)
@@ -134,6 +135,10 @@ Additionally, the SecurityFeature model allows users to add security features to
 The diagram below details the database schema.
 
 ![Database Schema](docs/readme_images/database_schema.png)
+
+## Testing
+
+Testing and results can be found [here](/TESTING.md)
 
 ## Security Features and Defensive Design
 
