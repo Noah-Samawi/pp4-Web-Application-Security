@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'django_summernote',
     'crispy_forms',
+    'crispy_bootstrap4',
     'worksifly',
 ]
 SUMMERNOTE_CONFIG = {
