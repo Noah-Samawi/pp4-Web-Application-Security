@@ -215,6 +215,9 @@ body {
     padding: 20px 0;
     border-radius: 2%;
     border: 1px solid #D8B646;
+    background-color: #ffffff;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .signup input,
