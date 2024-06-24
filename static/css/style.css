@@ -3,7 +3,7 @@
 /* Global Styles */
 
 body {
-    font-family: 'Open Sans', sans-serif; /* Apply Google Font */
+    font-family: sans-serif;
     font-weight: 300;
     background-color: #e9ecef;
 }
@@ -61,16 +61,15 @@ body {
     color: #442e10;
 }
 
-.red-o {
-    color: #4aa1d3;
+.red-o{
+  color: #4aa1d3;
 }
-
-.brand, .thin, .red-o {
+.brand, .thin, .red-o{
     font-family: Lato, sans-serif;
     color: #4A4A4F;
     font-size: 1.4rem;
     font-weight: 600;
-}
+    }
 
 .home-break {
     border-top: 1px solid #d8b646;
