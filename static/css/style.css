@@ -3,7 +3,7 @@
 /* Global Styles */
 
 body {
-    font-family: sans-serif;
+    font-family: 'Open Sans', sans-serif; /* Apply Google Font */
     font-weight: 300;
     background-color: #e9ecef;
 }
@@ -342,5 +342,54 @@ body {
     .mp-button,
     .action-btn {
         font-size: .75rem;
+    }
+}
+
+/* Password Reset Page Specific Styles */
+
+.container.password-reset-page {
+    max-width: 400px; /* Adjust as necessary */
+    margin: auto;
+}
+
+.password-reset-form {
+    margin-top: 20px;
+}
+
+.password-reset-form .form-group {
+    margin-bottom: 15px;
+}
+
+.password-reset-form label {
+    color: #4aa1d3;
+    font-weight: bold;
+}
+
+.password-reset-form input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #d8b646;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.password-reset-form button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #4aa1d3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.password-reset-form button[type="submit"]:hover {
+    background-color: #357ea6;
+}
+
+@media screen and (max-width: 400px) {
+    .password-reset-form input[type="password"] {
+        width: calc(100% - 10px);
     }
 }
