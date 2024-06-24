@@ -1,27 +1,34 @@
-{% extends "base.html" %}
-{% block title %}The Optimal Solutions | Update SecurityFeature{% endblock %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>The Optimal Solutions | Update SecurityFeature</title>
+</head>
+<body>
+  {% extends "base.html" %}
+  {% block title %}{% endblock %}
+  {% block content %}
+  {% load crispy_forms_tags %}
 
-{% load crispy_forms_tags %}
-
-<div class="container">
+  <div class="container">
     <h1 class="page-title">Update SecurityFeature</h1>
     <hr class="home-break">
     <br>
     <div class="row justify-content-center ">
-        {% if user.is_authenticated and securityfeature.author == user %}
-        <!-- Checks if the user is signed in and if the security feature belongs to them -->
-        {% load cloudinary %}
-        <div class="col-11 col-md-8 col-lg-6 mt-3 add-securityfeature-outer">
-            <form method="post" class="add-securityfeature mb-5" enctype="multipart/form-data">
-                {{ form | crispy }}
-                {% csrf_token %}
-                <button type="submit" class="btn btn-outline-dark">Update</button>
-                <a class="btn btn-outline-dark m-2" href="{% url 'securityfeature_detail' securityfeature.slug %}">Cancel</a>
-            </form>
-        </div>
-        {% endif %}
+      {% if user.is_authenticated and securityfeature.author == user %}
+      <!-- Checks if the user is signed in and if the security feature belongs to them -->
+      {% load cloudinary %}
+      <div class="col-11 col-md-8 col-lg-6 mt-3 add-securityfeature-outer">
+        <form method="post" class="add-securityfeature mb-5" enctype="multipart/form-data">
+          {{ form | crispy }}
+          {% csrf_token %}
+          <button type="submit" class="btn btn-outline-dark">Update</button>
+          <a class="btn btn-outline-dark m-2" href="valid_url_here">Cancel</a>
+        </form>
+      </div>
+      {% endif %}
     </div>
-</div>
+  </div>
 
-{% endblock %}
+  {% endblock %}
+</body>
+</html>
