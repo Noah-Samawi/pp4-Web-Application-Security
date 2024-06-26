@@ -1,21 +1,36 @@
+<!-- Extends the base.html template -->
 {% extends "base.html" %}
+
+<!-- Block for the title of the page -->
 {% block title %}The Optimal Solutions | Add SecurityFeature{% endblock %}
+
+<!-- Block for the content of the page -->
 {% block content %}
 {% load crispy_forms_tags %}
 
+<!-- Create a container for the content -->
 <div class="container">
+    <!-- Create a heading for the page -->
     <h1 class="page-title">Add SecurityFeature</h1>
+    <!-- Create a horizontal line for the page -->
     <hr class="home-break">
+    <!-- Create a break for the page -->
     <br>
+    <!-- Create a row and a column for the content -->
     <div class="row justify-content-center ">
+        <!-- Check if the user is authenticated -->
         {% if user.is_authenticated %}
         {% load cloudinary %}
+        <!-- Create a column for the content -->
         <div class="col-11 col-md-8 col-lg-6 mt-3 add-securityfeature-outer">
             <!--  Add SecurityFeature Form -->
             <form method="post" class="add-securityfeature mb-5" enctype="multipart/form-data">
+                <!-- Add the form to the page -->
                 {{ form | crispy }}
                 {% csrf_token %}
+                <!-- Create a submit button for the form -->
                 <button type="submit" class="btn btn-outline-dark">Submit</button>
+                <!-- Create a cancel button for the form -->
                 <a class="btn btn btn-outline-dark m-2" href="{%  url 'browse_securityfeatures' %}">Cancel</a>
             </form>
         </div>
@@ -23,4 +38,5 @@
     </div>
 </div>
 
+<!-- End of the content block -->
 {%endblock%}
