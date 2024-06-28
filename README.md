@@ -4,9 +4,11 @@ Welcome to the Web Application Security project repository! This project aims to
 
 The site acts as a repository for SecurityFeature whereby users can store their own SecurityFeature and also browse other users' SecurityFeature and bookmark them for a later date. Users can get organised for the week ahead by adding SecurityFeature to their tech security for each time. 
 
-The live link can be found here - [The Web Application Security](https://pp4-web-application-security-aaef0fe6b0f0.herokuapp.com/browsesecurityfeatures/)
-
 ![Mockup image](/docs/mockup!.png) <br>
+Developer: [Noah Al Samawi](https://github.com/Noah-Samawi) <br>
+[Live webapp](https://pp4-web-application-security-aaef0fe6b0f0.herokuapp.com/) <br>
+[Repository](https://github.com/Noah-Samawi/pp4-Web-Application-Security.git) <br>
+
 
 ## Table of Contents
 - [The Tech Security](#the-tech-security)
@@ -55,7 +57,7 @@ The live link can be found here - [The Web Application Security](https://pp4-web
 Visitors to our Web Application Security platform are typically passionate about web security and eager to explore the latest security features. Whether you're a seasoned professional or just beginning to delve into the world of cybersecurity, our platform offers a wealth of resources and tools to help you stay informed and protected. Join our community of like-minded individuals and embark on a journey to strengthen your web security knowledge while discovering innovative security solutions.
 
 ### User Stories
-
+: [2,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/2) [3,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/3) [18,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/18) [17,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/17) [16,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/16) [15,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/15) [14,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/14) [13,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/13) [12,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/12) [11,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/11) [10,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/10) [9,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/9)[8,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/8) [7,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/7) [6,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/6) [5,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/5) [4,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/4)
 #### EPIC | User Profile
 - As a site user, I can register an account to add, edit, or delete my security features, comment on, and bookmark other people's security features, and contribute to web application security.
 - As a site user, I can log in or log out of my account to ensure the security of my account.
@@ -66,7 +68,7 @@ Visitors to our Web Application Security platform are typically passionate about
 - As a site user, I want to immediately understand the purpose of the site so that I can determine if it meets my needs.
 - As a site user, I want to navigate around the site intuitively, enabling me to find content and understand my location within the site.
 - As a site user, I want to view a paginated list of security features, allowing me to select a security feature to view.
-- As a site user, I want to be able to click on a security feature to read its full details, including required ingredients, and to view comments left by other users.
+- As a site user, I want to be able to click on a security feature to read its full details, including required ingredients, and to view comments left by other users: : 
 
 #### EPIC | SecurityFeature Management
 - As a site user, I want to input my favorite security features into the app through an easy-to-use interface so that I can share them with other users.
@@ -436,7 +438,6 @@ To clone this repository follow the below steps:
 * https://docs.djangoproject.com/en/4.1/topics/class-based-views/mixins/ - Django Mixins
 * https://cloudinary.com/ - Cloudinary
 * https://django-ckeditor.readthedocs.io/en/latest/ - CKEditor
-* https://books.agiliq.com/projects/django-orm-cookbook/en/latest/query_relatedtool.html - Q Objects
 * https://www.w3schools.com/howto/howto_css_modals.asp - CSS Modal
 
 ## Credits
