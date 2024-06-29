@@ -57,7 +57,7 @@ Developer: [Noah Al Samawi](https://github.com/Noah-Samawi) <br>
 Visitors to our Web Application Security platform are typically passionate about web security and eager to explore the latest security features. Whether you're a seasoned professional or just beginning to delve into the world of cybersecurity, our platform offers a wealth of resources and tools to help you stay informed and protected. Join our community of like-minded individuals and embark on a journey to strengthen your web security knowledge while discovering innovative security solutions.
 
 ### User Stories
-: [2,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/2) [3,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/3) [18,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/18) [17,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/17) [16,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/16) [15,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/15) [14,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/14) [13,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/13) [12,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/12) [11,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/11) [10,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/10) [9,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/9)[8,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/8) [7,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/7) [6,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/6) [5,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/5) [4,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/4)
+:[2,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/2) [3,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/3) [18,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/18) [17,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/17) [16,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/16) [15,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/15) [14,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/14) [13,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/13) [12,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/12) [11,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/11) [10,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/10) [9,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/9)[8,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/8) [7,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/7) [6,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/6) [5,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/5) [4,](https://github.com/Noah-Samawi/pp4-Web-Application-Security/issues/4)
 #### EPIC | User Profile
 - As a site user, I can register an account to add, edit, or delete my security features, comment on, and bookmark other people's security features, and contribute to web application security.
 - As a site user, I can log in or log out of my account to ensure the security of my account.
@@ -68,7 +68,8 @@ Visitors to our Web Application Security platform are typically passionate about
 - As a site user, I want to immediately understand the purpose of the site so that I can determine if it meets my needs.
 - As a site user, I want to navigate around the site intuitively, enabling me to find content and understand my location within the site.
 - As a site user, I want to view a paginated list of security features, allowing me to select a security feature to view.
-- As a site user, I want to be able to click on a security feature to read its full details, including required ingredients, and to view comments left by other users: : 
+- As a site user, I want to be able to click on a security feature to read its full details,
+ including required Description and to view comments left by other users.
 
 #### EPIC | SecurityFeature Management
 - As a site user, I want to input my favorite security features into the app through an easy-to-use interface so that I can share them with other users.
@@ -273,10 +274,10 @@ omment.png)![header](docs/readme_images/features/delete_c
 ![header](docs/readme_images/features/add_securityfeature.png)
 
 - If the user is logged in, then they can add a SecurityFeature by clicking the link on the navigation bar.
-- The form fields for 'Ingredients' and 'Method' include a WYSIWYG editor called Summernote to help the user format their content by adding bullet points, headings etc.
+- The form fields for 'Description' and 'Method' include a WYSIWYG editor called Summernote to help the user format their content by adding bullet points, headings etc.
 - The user can upload a photo if they wish. If they choose not to, a default image displays as their securityfeature image.
 - The user can choose to publish the securityfeature now or save for later through a drop down menu. If they choose to 'save for later', the securityfeature will not appear on the Browse SecurityFeature page but the user will be able to access it in their 'My SecurityFeatures' page and it will be labelled as 'DRAFT'.
-- Failing to fill out the securityfeature's Title, Description, Ingredients, or Method, results in the form failing and rendering a message stating which fields you have missed.
+- Failing to fill out the securityfeature's Title, Description or Method, results in the form failing and rendering a message stating which fields you have missed.
 - If a user tries to add a securityfeature (by changing the url) without being signed in they are redirected to the log in page.
 - The user will receive a success message notifying them that the securityfeature has been successfully added.
 
@@ -455,5 +456,4 @@ To clone this repository follow the below steps:
 - Security Feature information was generated by [Chat GPT-3.5](https://chat.openai.com/chat)
 
 ## Acknowledgments
-
-I'd like to express my sincere gratitude to my mentor, Antonio, for his unwavering support and enlightening advice. Additionally, a huge thank you to The Code Institute Slack community for their incredibly helpful feedback and fast response times. Their support has been invaluable!
+I would like to express my gratitude to Code Institute's project "LMS Program" as it served as a significant source of inspiration for my own project. I am also incredibly thankful to my mentor, Antonio Rodriguez, for providing guidance and valuable feedback throughout the development process. Additionally, I extend my appreciation to Kay Welfare for being readily available, offering support, and providing assistance whenever needed. I am also incredibly thankful to the Tutor Assistance Support for helping me fix the defective bugs in my project. Their contributions have been essential in the successful completion of this project.
